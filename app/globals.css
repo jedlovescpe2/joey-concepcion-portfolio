@@ -650,3 +650,7 @@ button.rung { text-align: left; font: inherit; color: inherit; cursor: pointer; 
   mask-image: linear-gradient(to bottom, #000 62%, rgba(0,0,0,.55) 82%, transparent 100%), linear-gradient(to right, transparent 0%, #000 22%, #000 80%, transparent 100%);
   mask-composite: intersect;
 }
+/* hats: portrait sits in the upper half so the title and text never cover the face */
+.hat img { top: 13%; bottom: auto; height: min(44%, 290px); -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 22%); mask-image: linear-gradient(to top, transparent 0%, #000 22%); }
+.hat::after { background: linear-gradient(to top, rgba(20,26,12,.92) 0%, rgba(20,26,12,.6) 38%, transparent 58%); }
+@media (max-width: 768px) { .hat img { top: 11%; height: 46%; } }
