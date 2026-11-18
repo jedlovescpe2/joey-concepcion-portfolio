@@ -26,7 +26,50 @@ OUTFIT = (
     "Outfit: a light heather-grey knit zip cardigan over a dark plum shirt with a small subtle floral print, slim charcoal chinos, brown leather loafers, "
     "a slim black smartwatch. ")
 
+PHOTO = (
+    "A real professional photograph (not an illustration, not 3D): natural skin texture, true-to-life colour, soft flattering light, "
+    "shallow depth of field, shot on a full-frame camera with an 85mm lens, editorial portrait quality. ")
+NOTEXT = "No text, no logos, no watermark, no other people. "
+
+
+def portrait(scene, outfit, frame="waist-up portrait, both shoulders and arms fully inside the frame, head in the upper third"):
+    return ("Photo of " + IDENTITY + ". " + LIKENESS + BUILD + PHOTO + "Outfit: " + outfit + ". Framing: " + frame + ". Scene: " + scene + ". " + NOTEXT)
+
+
+TALL = dict(size="1024x1536", background="opaque")
+SQ = dict(size="1024x1024", background="opaque")
+HAT_FRAME = "head-and-shoulders to chest portrait, centred, face in the upper half of the image, generous headroom, full shoulders inside the frame"
+
 JOBS = {
+    "hero": dict(TALL, prompt=portrait(
+        "plain seamless light warm-grey studio backdrop with nothing else in it, even soft studio lighting, he stands relaxed and confident, arms loosely crossed, warm closed-mouth smile, looking at the camera",
+        "a tailored navy suit jacket and trousers, crisp white open-collar shirt without a tie, slim black smartwatch",
+        "waist-up portrait from the belt up, both shoulders and both elbows fully inside the frame with space around them, head in the upper third")),
+    "about": dict(TALL, prompt=portrait(
+        "a bright modern Singapore office lounge with plants and warm wood, blurred background, he sits on the edge of a desk holding a coffee cup, relaxed friendly smile, looking at the camera",
+        "a light heather-grey knit zip cardigan over a dark plum shirt with a small subtle floral print, charcoal chinos")),
+    "x-happy": dict(SQ, prompt=portrait("soft cream background, he smiles warmly with a closed-mouth smile, looking at the camera",
+        "a white oxford shirt with the top button open", HAT_FRAME)),
+    "x-thinking": dict(SQ, prompt=portrait("soft sage-green background, thoughtful expression, chin resting on his hand, eyes looking slightly up and to the side",
+        "a charcoal crew-neck sweater over a light blue collar shirt", HAT_FRAME)),
+    "x-laughing": dict(SQ, prompt=portrait("soft warm beige background, genuinely laughing with a natural open smile showing teeth, eyes crinkled",
+        "a navy polo shirt", HAT_FRAME)),
+    "x-focused": dict(SQ, prompt=portrait("dim modern office at night with a laptop screen lighting his face softly, focused concentrated expression looking down at the screen",
+        "a dark olive-green overshirt over a black t-shirt", HAT_FRAME)),
+    "hat-programmer": dict(TALL, prompt=portrait("a 2006-era Philippine government office with beige CRT monitors and paper files, warm fluorescent light, he looks at the camera with a slight smile",
+        "a short-sleeved light blue polo shirt with a lanyard ID", HAT_FRAME)),
+    "hat-data": dict(TALL, prompt=portrait("a cool blue-lit server room with rows of racks and blinking lights, he looks at the camera with a calm confident expression",
+        "a white long-sleeved button-down shirt with sleeves rolled to the forearm, a lanyard", HAT_FRAME)),
+    "hat-analyst": dict(TALL, prompt=portrait("a Singapore bank meeting room with a glass whiteboard covered in system diagrams behind him, soft daylight, professional smile",
+        "a pale blue dress shirt with a dark navy tie", HAT_FRAME)),
+    "hat-support": dict(TALL, prompt=portrait("an operations room at night with multiple monitors showing dashboards, he wears a headset around his neck, alert friendly expression",
+        "a dark grey zip hoodie over a black t-shirt", HAT_FRAME)),
+    "hat-frontend": dict(TALL, prompt=portrait("a bright creative tech office with a large monitor showing a website layout, warm daylight, relaxed smile",
+        "a charcoal unstructured blazer over a plain white t-shirt", HAT_FRAME)),
+    "hat-lead": dict(TALL, prompt=portrait("a modern corporate office in Singapore with floor-to-ceiling windows and the city skyline softly blurred, confident leader smile",
+        "a tailored navy suit with a white open-collar shirt, no tie", HAT_FRAME)),
+    "hat-mentor": dict(TALL, prompt=portrait("a university classroom with students softly blurred in the background and a screen with code behind him, warm encouraging smile, gesturing gently with one hand",
+        "a light heather-grey knit zip cardigan over a dark plum shirt with a small subtle floral print", HAT_FRAME)),
     "sheet": dict(size="1536x1024", background="opaque", prompt=(
         "A professional character model sheet of " + IDENTITY + ". " + LIKENESS + BUILD + STYLE + OUTFIT +
         "Layout on a clean warm cream paper background (#f6f3e7) with thin olive-green (#4c5a2b) guide lines and small olive labels: "

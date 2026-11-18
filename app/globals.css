@@ -136,7 +136,7 @@ body::after {
 .hero h1 .w { position: relative; z-index: 10; display: block; overflow: hidden; padding: 0 0.04em; }
 .hero-badge { position: absolute; z-index: 30; left: 50%; top: calc(2vh + min(13.5vw, 210px) * .9 + 6px); transform: translateX(-50%); font-family: var(--display); text-transform: uppercase; font-size: min(3.6vw, 52px); line-height: 1; letter-spacing: .32em; padding: .26em .5em .22em .82em; border-radius: 999px; background: var(--ochre); color: var(--olive-900); box-shadow: 0 18px 40px -12px rgba(20,24,14,.5); white-space: nowrap; }
 .hero h1 .w > span { display: block; }
-.hero-photo { position: absolute; z-index: 20; left: 50%; bottom: 0; height: min(62vh, 560px); aspect-ratio: 445 / 538; transform: translateX(-50%); pointer-events: none; transform-style: preserve-3d; }
+.hero-photo { position: absolute; z-index: 20; left: 50%; bottom: 0; height: clamp(320px, calc(58vh - 80px), 560px); aspect-ratio: 760 / 1000; transform: translateX(-50%); pointer-events: none; transform-style: preserve-3d; }
 .hero-photo .brush { position: absolute; inset: 14% -10% -2% -10%; background: linear-gradient(165deg, rgba(246,243,231,.92) 0%, rgba(229,233,210,.75) 45%, rgba(200,150,60,.85) 100%);
   -webkit-mask: url("/img/brush.svg") center / 100% 100% no-repeat; mask: url("/img/brush.svg") center / 100% 100% no-repeat; }
 .hero-photo img { position: relative; width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 30px 40px rgba(20,24,14,.35)); }
@@ -650,17 +650,15 @@ button.rung { text-align: left; font: inherit; color: inherit; cursor: pointer; 
   .rm-nav { grid-template-columns: 1fr 1fr; }
 }
 .hats-row.revealing .hat { transition: flex .7s cubic-bezier(.23,1,.32,1); }
-.face-row button { opacity: 1; cursor: default; }
-.face-row button.on { border-color: transparent; }
-.hat img { height: min(64%, 300px); }
-/* selfie cut-out ends in hard crop lines at the shoulders: dissolve the bottom and side edges */
-.hero-photo img {
-  -webkit-mask-image: linear-gradient(to bottom, #000 62%, rgba(0,0,0,.55) 82%, transparent 100%), linear-gradient(to right, transparent 0%, #000 22%, #000 80%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to bottom, #000 62%, rgba(0,0,0,.55) 82%, transparent 100%), linear-gradient(to right, transparent 0%, #000 22%, #000 80%, transparent 100%);
-  mask-composite: intersect;
-}
-/* hats: portrait sits in the upper half so the title and text never cover the face */
-.hat img { top: 13%; bottom: auto; height: min(44%, 290px); -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 22%); mask-image: linear-gradient(to top, transparent 0%, #000 22%); }
-.hat::after { background: linear-gradient(to top, rgba(20,26,12,.92) 0%, rgba(20,26,12,.6) 38%, transparent 58%); }
-@media (max-width: 768px) { .hat img { top: 11%; height: 46%; } }
+
+/* hero: full waist-up cut-out, only a soft fade where the photo ends at the waist */
+.hero-photo img { -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%); mask-image: linear-gradient(to bottom, #000 78%, transparent 100%); }
+
+/* hats: full-bleed role photos (Learnly cards); faces sit in the upper half by framing */
+.hat img { inset: 0; left: 0; top: 0; bottom: auto; width: 100%; height: 100%; object-fit: cover; object-position: 50% 16%; transform: scale(1.06); border-radius: 0; -webkit-mask-image: none; mask-image: none; mix-blend-mode: normal; filter: grayscale(.55) brightness(.8); opacity: .9; }
+.hat.on img { transform: scale(1); filter: none; opacity: 1; }
+.hat::after { background: linear-gradient(to top, rgba(20,26,12,.94) 0%, rgba(20,26,12,.62) 34%, rgba(20,26,12,0) 56%); }
+.hat-ghost { color: rgba(255,255,255,.1); top: auto; bottom: 46%; text-shadow: none; }
+.hat.on .hat-ghost { opacity: 0; }
+.hat-side .v { background: linear-gradient(to top, transparent 50%, rgba(43,53,27,.92) 50%); }
+@media (max-width: 768px) { .hat img { filter: none; transform: none; } }

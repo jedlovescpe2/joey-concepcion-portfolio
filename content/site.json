@@ -18,8 +18,8 @@
     "linkedin": "https://www.linkedin.com/in/joeymconcepcion/",
     "github": "https://github.com/jmconcepcion",
     "instagram": "https://www.instagram.com/jooeeeeeeeey/",
-    "photo": "/img/joey.jpg",
-    "cutout": "/img/joey-cut.webp",
+    "photo": "/img/about.webp",
+    "cutout": "/img/hero-cut.webp",
     "now": [
       {
         "label": "Currently",
@@ -94,7 +94,7 @@
         "years": "2",
         "since": "2006",
         "text": "Wrote COBOL and Visual Basic for the Commission on Audit, his first production code.",
-        "image": "/img/joey-cut.webp",
+        "image": "/img/hat-programmer.webp",
         "role": "Programmer"
       },
       {
@@ -102,7 +102,7 @@
         "years": "2",
         "since": "2010",
         "text": "Ran Oracle for the national power grid, then designed data warehouses for clients.",
-        "image": "/img/x-thinking.webp",
+        "image": "/img/hat-data.webp",
         "role": "Data Warehouse Architect"
       },
       {
@@ -110,7 +110,7 @@
         "years": "8",
         "since": "2012",
         "text": "Banks, payments and pharma in Singapore: requirements, design and the bridge between business and code.",
-        "image": "/img/x-focused.webp",
+        "image": "/img/hat-analyst.webp",
         "role": "Senior Systems Analyst"
       },
       {
@@ -118,7 +118,7 @@
         "years": "2",
         "since": "2013",
         "text": "Kept private-banking systems running across regions and led the people on call.",
-        "image": "/img/x-happy.webp",
+        "image": "/img/hat-support.webp",
         "role": "Senior Application Consultant / Production Support Lead"
       },
       {
@@ -126,7 +126,7 @@
         "years": "2",
         "since": "2020",
         "text": "Built accessible healthcare sites, then built and led the front-end team that ships them.",
-        "image": "/img/x-focused.webp",
+        "image": "/img/hat-frontend.webp",
         "role": "Front-End Development Manager"
       },
       {
@@ -134,7 +134,7 @@
         "years": "4",
         "since": "2022",
         "text": "Governance and strategy for web, email and mobile messaging across ASKAN.",
-        "image": "/img/joey.jpg",
+        "image": "/img/hat-lead.webp",
         "role": "Digital Channel Lead"
       },
       {
@@ -142,7 +142,7 @@
         "years": "1",
         "since": "2026",
         "text": "Teaching the next generation of IT professionals what twenty years in production taught him.",
-        "image": "/img/x-laughing.webp",
+        "image": "/img/hat-mentor.webp",
         "role": ""
       }
     ]

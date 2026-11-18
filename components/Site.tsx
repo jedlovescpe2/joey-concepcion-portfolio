@@ -8,7 +8,7 @@ import { mountMotion } from "@/lib/motion";
 import { Arrow, Chars, Heading, Letters, Roll, Words } from "./Text";
 import { Visual } from "./Visuals";
 
-const HIRES_FACES = false;
+const HIRES_FACES = true;
 
 const HEADS: Record<Exclude<Page, "home">, { n: string; label: string; ghost: string; title: string; text: string }> = {
   experience: { n: "02", label: "Experience", ghost: "WORK", title: "Twenty years, fourteen roles", text: "From a mainframe at the Commission on Audit to digital channels across Asia. Tap any role for the full story." },
@@ -82,8 +82,7 @@ export default function Site({ page = "home" }: { page?: Page }) {
   // About: the portrait cycles through his expressions
   const faces = useMemo(() => [{ label: "Hi", image: c.profile.photo }, ...(c.profile.expressions ?? [])], [c]);
   useEffect(() => {
-    // the expression crops are only ~250px (cut from the character sheet), so the big frame keeps the sharp photo
-    // until full-size expression portraits exist; flip HIRES_FACES then
+    // HIRES_FACES: only cycle the big frame when the expression images are full-size portraits
     if (!HIRES_FACES || page !== "home" || faces.length < 2) return;
     const id = window.setInterval(() => setFace((f) => (f + 1) % faces.length), 2800);
     return () => window.clearInterval(id);
