@@ -185,20 +185,34 @@ export default function Site({ page = "home" }: { page?: Page }) {
             ×
           </button>
         </div>
-        <nav>
-          {NAV.map((n, i) =>
-            n.route ? (
-              <Link key={n.id} href={href(n)} onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1}>
-                <small>{String(i + 1).padStart(2, "0")}</small>
-                <span>{n.label}</span>
-              </Link>
-            ) : (
-              <a key={n.id} href={href(n)} onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1}>
-                <small>{String(i + 1).padStart(2, "0")}</small>
-                <span>{n.label}</span>
-              </a>
-            ),
-          )}
+        <nav className="cnav">
+          {[
+            { label: "On this page", items: NAV.filter((n) => !n.route) },
+            { label: "Pages", items: NAV.filter((n) => n.route) },
+          ].map((g) => (
+            <div className="cgroup" key={g.label}>
+              <h6>{g.label}</h6>
+              {g.items.map((n) => {
+                const i = [...NAV.filter((x) => !x.route), ...NAV.filter((x) => x.route)].indexOf(n);
+                const inner = (
+                  <>
+                    <small>{String(i + 1).padStart(2, "0")}</small>
+                    <span>{n.label}</span>
+                    <em aria-hidden="true">{n.route ? "↗" : "→"}</em>
+                  </>
+                );
+                return n.route ? (
+                  <Link key={n.id} href={href(n)} onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1} className={page === n.route ? "here" : undefined}>
+                    {inner}
+                  </Link>
+                ) : (
+                  <a key={n.id} href={href(n)} onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1}>
+                    {inner}
+                  </a>
+                );
+              })}
+            </div>
+          ))}
         </nav>
         <div className="foot">
           <a href={p.linkedin} target="_blank" rel="noreferrer" tabIndex={menu ? 0 : -1}>
