@@ -20,6 +20,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <head>
+        {/* Netlify injects a "hosted on Netlify" comment + newline into <head>; the stray text node breaks React 19 hydration (error 418). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var h=document.head;for(var n=h.firstChild;n;){var x=n.nextSibling;if((n.nodeType===8&&/hosted on Netlify/i.test(n.nodeValue))||(n.nodeType===3&&!n.nodeValue.trim()))h.removeChild(n);n=x}var o=new MutationObserver(function(){document.querySelectorAll('script[data-nf-variant],iframe[id^="nl-"]').forEach(function(e){e.remove()})});o.observe(document.documentElement,{childList:true,subtree:true});setTimeout(function(){o.disconnect()},8000)})();`,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
