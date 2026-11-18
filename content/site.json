@@ -1,0 +1,617 @@
+{
+  "profile": {
+    "name": "Joseph (Joey) Mandado Concepcion",
+    "short": "Joey",
+    "first": "Joey",
+    "last": "Concepcion",
+    "role": "IT Professional · Digital Channel Lead · IT Mentor",
+    "heroWords": [
+      "Two decades",
+      "in IT"
+    ],
+    "intro": "I'm Joey — an IT professional with 20+ years across databases, batch jobs, front-end and digital channels, now teaching the next generation.",
+    "tagline": "From COBOL to digital channels",
+    "location": "Singapore",
+    "availability": "Open to mentoring & speaking",
+    "email": "",
+    "phone": "",
+    "linkedin": "https://www.linkedin.com/in/joeymconcepcion/",
+    "github": "https://github.com/jmconcepcion",
+    "instagram": "https://www.instagram.com/jooeeeeeeeey/",
+    "photo": "/img/joey.jpg",
+    "cutout": "/img/joey-cut.webp",
+    "now": [
+      {
+        "label": "Currently",
+        "value": "Digital Channel Lead, Boehringer Ingelheim"
+      },
+      {
+        "label": "Also",
+        "value": "Part-time Mentor, Mapúa Malayan Digital College"
+      },
+      {
+        "label": "Studying",
+        "value": "Master of Information Systems, UP Open University"
+      },
+      {
+        "label": "Based in",
+        "value": "Singapore"
+      }
+    ]
+  },
+  "brands": [
+    "Boehringer Ingelheim",
+    "Citibank",
+    "Societe Generale",
+    "SAP",
+    "NETS",
+    "UOB",
+    "Manulife",
+    "NGCP",
+    "Mapúa MMDC",
+    "Commission on Audit"
+  ],
+  "about": {
+    "paragraphs": [
+      "I'm an IT professional with more than 20 years of experience across systems analysis, database management, application development, IT project management and digital strategy, in banking, financial services and pharmaceuticals in Singapore and the Philippines.",
+      "Today I'm a Digital Channel Lead at Boehringer Ingelheim, looking after the governance and optimisation of owned digital channels (web, email and mobile messaging) across the ASKAN region: ASEAN, South Korea, Australia and New Zealand.",
+      "Along the way I've enjoyed writing training materials, running onboarding and knowledge-transfer sessions, and mentoring colleagues. So I've started teaching: since October 2026 I've been a part-time mentor at Mapúa Malayan Digital College, handling Object-Oriented Systems Analysis and Design. I'm also taking a Master of Information Systems at UP Open University to grow into a full IT faculty role."
+    ],
+    "talkAbout": [
+      "SQL, databases and query tuning",
+      "UNIX shell scripting and batch jobs",
+      "Front-end development and accessibility",
+      "Agile, Scrum and Jira",
+      "Digital marketing, UX and analytics",
+      "Balancing full-time work with grad school"
+    ]
+  },
+  "stats": [
+    {
+      "value": 20,
+      "prefix": "",
+      "suffix": "+",
+      "label": "Years in IT, from mainframes to the cloud"
+    },
+    {
+      "value": 12,
+      "prefix": "",
+      "suffix": "",
+      "label": "Organisations in Singapore & the Philippines"
+    },
+    {
+      "value": 22,
+      "prefix": "",
+      "suffix": "",
+      "label": "Countries my production support reached"
+    },
+    {
+      "value": 20,
+      "prefix": "",
+      "suffix": "+",
+      "label": "Certifications & courses completed"
+    }
+  ],
+  "arch": {
+    "label": "By the numbers",
+    "title": "Twenty years of real results",
+    "text": "Programmer, DBA, architect, analyst, support lead, developer, manager, and now mentor. Every hat taught me something worth passing on."
+  },
+  "approach": [
+    {
+      "title": "Model the system before building it",
+      "text": "Use cases, sequence and context diagrams first. It's what I now teach in Object-Oriented Systems Analysis and Design, because a clear model saves months of rework.",
+      "visual": "uml"
+    },
+    {
+      "title": "Build interfaces people can actually use",
+      "text": "Responsive, accessible front-ends for healthcare-professional sites, then a team and the standards that kept them consistent across markets.",
+      "visual": "code"
+    },
+    {
+      "title": "Keep production calm at 3 a.m.",
+      "text": "Global end-of-day batches, UNIX scripts, Control-M and SQL patches across Oracle, Sybase and SQL Server, with 24/7 support rotations to match.",
+      "visual": "terminal"
+    },
+    {
+      "title": "Lead channels with data, not guesswork",
+      "text": "Governance and strategy for web, email and mobile messaging across ASKAN, using analytics to lift engagement and conversion.",
+      "visual": "chart"
+    }
+  ],
+  "current": {
+    "title": "Part-time Mentor",
+    "org": "Mapúa Malayan Digital College",
+    "when": "Teaching · Oct 2026 – present",
+    "text": "I mentor students in Object-Oriented Systems Analysis and Design, with a focus on modelling a system before building it.",
+    "tags": [
+      "Use case",
+      "Sequence",
+      "Context"
+    ]
+  },
+  "ladder": {
+    "org": "Boehringer Ingelheim",
+    "where": "Singapore · 2015 – present (incl. 5 years via EIRE Systems)",
+    "caption": "Developer → manager → channel manager → lead, in four years",
+    "steps": [
+      {
+        "when": "Nov 2020 – Oct 2021",
+        "title": "Front-End Developer",
+        "text": "Built responsive, accessible web interfaces for healthcare-professional sites."
+      },
+      {
+        "when": "Oct 2021 – Oct 2022",
+        "title": "Front-End Development Manager",
+        "text": "Built and led the front-end team; set development standards and best practices."
+      },
+      {
+        "when": "Oct 2022 – Jan 2025",
+        "title": "Channel Manager, Multi-Channel Excellence",
+        "text": "Managed digital platforms regionally, using analytics to lift engagement and conversion."
+      },
+      {
+        "when": "Jan 2025 – present",
+        "title": "Digital Channel Lead",
+        "text": "Lead governance and strategy for web, email and mobile messaging across ASKAN."
+      }
+    ]
+  },
+  "roles": [
+    {
+      "title": "Senior Systems Analyst",
+      "org": "EIRE Systems, deployed to Boehringer Ingelheim",
+      "when": "Nov 2015 – Oct 2020",
+      "industry": "Pharmaceuticals",
+      "points": [
+        "Bridged IT and business for BI's marketing and sales systems across APAC, Japan and India.",
+        "Ran website and email platform projects; provided 3rd-level support.",
+        "Did UAT and rollout for a Salesforce-based incentives system, tracked in Jira under Scrum.",
+        "Administered Veeva Vault and its integrations."
+      ]
+    },
+    {
+      "title": "Team Lead, Technical Environment Support",
+      "org": "Citibank Singapore, via Encora",
+      "when": "Sep – Nov 2015",
+      "industry": "Banking",
+      "points": [
+        "Supported UAT, SIT and production environments for banking apps across four global regions.",
+        "Checked data integrity across Oracle, Sybase and PostgreSQL; kept work SOX-compliant."
+      ]
+    },
+    {
+      "title": "Senior Application Consultant / Production Support Lead",
+      "org": "Societe Generale Private Banking, via Optimum Solutions",
+      "when": "Dec 2013 – Jun 2015",
+      "industry": "Banking",
+      "points": [
+        "Monitored global end-of-day batches across France, Japan, Dubai, Singapore and Hong Kong.",
+        "Automated batch jobs with UNIX shell scripts; supported Sybase ASE 15 databases.",
+        "Led a data migration project to DBS."
+      ]
+    },
+    {
+      "title": "Senior Systems Analyst",
+      "org": "SAP Mobile Services, via Adecco",
+      "when": "Mar – Sep 2014",
+      "industry": "Telecoms",
+      "points": [
+        "Managed an outsourced development relationship and SQL administration.",
+        "Produced monthly financial and operational reports for the billing system."
+      ]
+    },
+    {
+      "title": "Senior System Analyst",
+      "org": "NETS, via 3i Infotech",
+      "when": "Oct 2012 – Nov 2013",
+      "industry": "Payments",
+      "points": [
+        "Handled incidents, maintenance and deployments for billing and terminal systems, including 24/7 support.",
+        "Wrote SQL data patches, UNIX scripts and SAP BusinessObjects reports."
+      ]
+    },
+    {
+      "title": "Analyst Programmer",
+      "org": "UOB Group, via DL Resources",
+      "when": "Apr – Sep 2012",
+      "industry": "Banking",
+      "points": [
+        "Wrote test plans and scripts; tracked defects in Mercury Quality Center.",
+        "Supported Control-M batch scheduling and ClearCase migrations."
+      ]
+    },
+    {
+      "title": "Data Warehouse Architect",
+      "org": "ABBE Technology Solutions",
+      "when": "Jun 2011 – Mar 2012",
+      "industry": "Financial Services",
+      "points": [
+        "Turned logical data models into Greenplum physical models and automated loads with Perl/Shell.",
+        "Ran customer demos and proofs of concept; designed internal technical training."
+      ]
+    },
+    {
+      "title": "Database Administrator",
+      "org": "National Grid Corporation of the Philippines",
+      "when": "Jun 2010 – Jun 2011",
+      "industry": "Energy",
+      "points": [
+        "Administered SQL Server and Oracle databases: backups, disaster recovery and tuning."
+      ]
+    },
+    {
+      "title": "Information System Specialist",
+      "org": "Manulife Financial",
+      "when": "Oct 2008 – Jun 2010",
+      "industry": "Financial Services",
+      "points": [
+        "Supported IFS financial systems and Control-M batches for global users.",
+        "Built Java data-mapping tools, SQL reporting and Korn Shell/Perl utilities."
+      ]
+    },
+    {
+      "title": "Programmer",
+      "org": "Commission on Audit",
+      "when": "Jun 2006 – Oct 2008",
+      "industry": "Government",
+      "points": [
+        "Built and maintained government financial and reporting systems (e-NGAS, AFR, RSAS).",
+        "Wrote technical documentation for mainframe software and hardware."
+      ]
+    }
+  ],
+  "industries": [
+    "Pharmaceuticals",
+    "Banking",
+    "Financial Services",
+    "Payments",
+    "Telecoms",
+    "Energy",
+    "Government",
+    "Education"
+  ],
+  "skills": [
+    {
+      "group": "Databases",
+      "note": "8+ yrs SQL Server · 7+ yrs Oracle · 6+ yrs Sybase",
+      "items": [
+        "SQL Server / T-SQL",
+        "Oracle",
+        "Sybase ASE",
+        "PostgreSQL",
+        "MySQL",
+        "IBM DB2",
+        "Greenplum",
+        "Backups & DR",
+        "Query tuning"
+      ]
+    },
+    {
+      "group": "Programming & Scripting",
+      "note": "6+ yrs UNIX scripting · 6+ yrs JCL / Control-M",
+      "items": [
+        "Bash / Korn Shell",
+        "Perl",
+        "Java",
+        "C#.NET",
+        "VB.NET",
+        "PHP",
+        "JavaScript",
+        "ASP.NET",
+        "C++",
+        "COBOL"
+      ]
+    },
+    {
+      "group": "Delivery & Service Management",
+      "note": "Agile, ITIL and full SDLC experience",
+      "items": [
+        "Agile / Scrum",
+        "Jira",
+        "ITIL",
+        "Incident & change mgmt",
+        "SDLC / V-Model",
+        "UAT · SIT",
+        "Regression testing",
+        "Control-M"
+      ]
+    },
+    {
+      "group": "Teaching",
+      "note": "Subjects I teach or would love to teach",
+      "items": [
+        "Systems Analysis & Design",
+        "Database Management Systems",
+        "IT Project Management",
+        "IT Service Management",
+        "Web & App Development",
+        "Digital Marketing & UX/CX",
+        "Data Analytics",
+        "QA & Software Testing"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "group": "IT Service Management & Admin",
+      "items": [
+        {
+          "name": "ITIL Foundation in IT Service Management",
+          "issuer": "APMG International",
+          "year": "2017"
+        },
+        {
+          "name": "Veeva Vault Platform System Administrator",
+          "issuer": "Veeva Systems",
+          "year": "2020"
+        }
+      ]
+    },
+    {
+      "group": "Project Management & Agile",
+      "items": [
+        {
+          "name": "PMP/PMI Fundamentals",
+          "issuer": "Udemy",
+          "year": "2022"
+        },
+        {
+          "name": "Agile Scrum Fundamentals",
+          "issuer": "Udemy",
+          "year": "2021"
+        },
+        {
+          "name": "Agile with Atlassian Jira",
+          "issuer": "Coursera",
+          "year": "2023"
+        }
+      ]
+    },
+    {
+      "group": "Digital Marketing, UX & CX",
+      "items": [
+        {
+          "name": "UX Certification, AI track",
+          "issuer": "Nielsen Norman Group",
+          "year": "2026 · in progress"
+        },
+        {
+          "name": "Digital Advertising Certification",
+          "issuer": "HubSpot",
+          "year": "2025"
+        },
+        {
+          "name": "Digital User Experience Design",
+          "issuer": "National University of Singapore",
+          "year": "2024"
+        },
+        {
+          "name": "Foundations of UX and Design Thinking",
+          "issuer": "Microsoft",
+          "year": "2024"
+        },
+        {
+          "name": "Mastering CX Excellence",
+          "issuer": "Qualtrics XM",
+          "year": "2024"
+        },
+        {
+          "name": "Digital Marketing: Strategies, Models and Frameworks",
+          "issuer": "National University of Singapore",
+          "year": "2022"
+        },
+        {
+          "name": "The Complete Digital Marketing Course",
+          "issuer": "Udemy",
+          "year": "2022"
+        }
+      ]
+    },
+    {
+      "group": "Data & Analytics",
+      "items": [
+        {
+          "name": "Introduction to Databases and SQL Querying",
+          "issuer": "Udemy",
+          "year": "2017"
+        },
+        {
+          "name": "Data-Driven Decision Making",
+          "issuer": "National University of Singapore",
+          "year": "2025"
+        },
+        {
+          "name": "Google Analytics Certification",
+          "issuer": "Google",
+          "year": "2025"
+        }
+      ]
+    },
+    {
+      "group": "Leadership & Communication",
+      "items": [
+        {
+          "name": "Crucial Conversations for Accountability and Mastering Dialogue",
+          "issuer": "Crucial Learning",
+          "year": "2025–2026"
+        },
+        {
+          "name": "Presentation Skills",
+          "issuer": "British Council",
+          "year": "2023"
+        },
+        {
+          "name": "Executive leadership and strategic thinking courses",
+          "issuer": "LinkedIn Learning",
+          "year": "2023–2024"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "when": "2008",
+      "title": "BS Information Technology",
+      "school": "Polytechnic University of the Philippines",
+      "note": ""
+    },
+    {
+      "when": "2010",
+      "title": "MS Information Technology",
+      "school": "Polytechnic University of the Philippines",
+      "note": ""
+    },
+    {
+      "when": "Dec 2025",
+      "title": "MSc Digital Marketing and Strategy",
+      "school": "Aston University, United Kingdom",
+      "note": "Merit"
+    },
+    {
+      "when": "Expected 2027",
+      "title": "Master of Information Systems",
+      "school": "University of the Philippines Open University",
+      "note": "In progress"
+    }
+  ],
+  "interests": [
+    {
+      "icon": "spark",
+      "title": "Digital Innovation",
+      "text": "Keeping up with what's new in analytics, AI and digital product practice."
+    },
+    {
+      "icon": "pulse",
+      "title": "Fitness & Health",
+      "text": "Structured routines, tracking and habits that actually stick."
+    },
+    {
+      "icon": "compass",
+      "title": "Travel & Culture",
+      "text": "Exploring cities and cultures to understand markets and people better."
+    }
+  ],
+  "thenNow": {
+    "then": {
+      "when": "Then · 2006",
+      "title": "Programmer",
+      "text": "Commission on Audit, Philippines. Mainframe systems and government finance reports."
+    },
+    "now": {
+      "when": "Now · 2026",
+      "title": "Digital Channel Lead",
+      "text": "Boehringer Ingelheim, Singapore. Web, email and mobile channels across a region."
+    }
+  },
+  "faq": [
+    {
+      "q": "Where have I worked?",
+      "a": "12 organisations across government, insurance, energy, banking, payments, telecoms, pharma and education, in the Philippines and Singapore."
+    },
+    {
+      "q": "Oldest and newest language I've used?",
+      "a": "COBOL and JavaScript. Somewhere in between: Java, C#, VB, PHP, Perl and a lot of shell scripts."
+    },
+    {
+      "q": "Most hats worn?",
+      "a": "Programmer, DBA, data warehouse architect, systems analyst, production support lead, front-end developer, then manager."
+    },
+    {
+      "q": "Why another master's?",
+      "a": "I've started teaching IT and want to do more of it. Twenty years of real-world war stories should be useful to students."
+    },
+    {
+      "q": "Ask me about…",
+      "a": "Moving to Singapore for work, juggling grad school with a full-time job, or how a batch job can ruin your weekend."
+    }
+  ],
+  "countries": [
+    {
+      "region": "ASEAN",
+      "items": [
+        "Brunei",
+        "Cambodia",
+        "Indonesia",
+        "Laos",
+        "Malaysia",
+        "Myanmar",
+        "Philippines",
+        "Singapore",
+        "Thailand",
+        "Vietnam"
+      ]
+    },
+    {
+      "region": "East & South Asia",
+      "items": [
+        "Hong Kong",
+        "Japan",
+        "Taiwan",
+        "India"
+      ]
+    },
+    {
+      "region": "Oceania",
+      "items": [
+        "Australia",
+        "New Zealand"
+      ]
+    },
+    {
+      "region": "Europe & Middle East",
+      "items": [
+        "France",
+        "Italy",
+        "Netherlands",
+        "Spain",
+        "Turkey",
+        "Dubai"
+      ]
+    }
+  ],
+  "game": {
+    "statements": [
+      {
+        "text": "I once led a data migration project to DBS.",
+        "lie": false
+      },
+      {
+        "text": "I've never written a single line of COBOL.",
+        "lie": true
+      },
+      {
+        "text": "I finished my Aston master's with Merit.",
+        "lie": false
+      }
+    ],
+    "right": "You got it! COBOL is right there on my skills list.",
+    "wrong": "Nope, that one's true. The lie: I've definitely written COBOL."
+  },
+  "facts": [
+    "My first IT job, in 2006, was as a programmer at the Philippines' Commission on Audit.",
+    "I'm a big Neil Gaiman fan. If you want a book that's dark, funny and strange all at once, ask me for a recommendation.",
+    "I've watched over end-of-day batch jobs in 22 countries, from New Zealand to the Netherlands.",
+    "Spanish and Italian are my favourite cuisines, and I don't just eat them — I cook them too.",
+    "I went from Front-End Developer to Digital Channel Lead at Boehringer Ingelheim in about four years.",
+    "I'm a sucker for horror movies. The creepier the house, the happier I am.",
+    "I've written code in COBOL and in JavaScript, two languages born more than 35 years apart.",
+    "I sing a lot, mostly when no one's around. My kitchen and my shower are always sold-out venues.",
+    "This will be my fourth degree. Yes, I like school.",
+    "I also love a good period film: grand houses, gorgeous costumes and people saying a lot with a single look.",
+    "I've been on 24/7 support rotations, so I know what a 3 a.m. alert feels like.",
+    "My kitchen is my favourite test environment. Paella and pasta are both in my production release.",
+    "I've worked with at least seven database systems, from Oracle and Sybase to Greenplum.",
+    "My ideal movie night is a double feature: a horror film, then a period drama to calm my nerves.",
+    "I've been connected to Boehringer Ingelheim for over ten years: five as a consultant, then as an employee.",
+    "If you hear someone singing while stirring a risotto, there's a good chance it's me.",
+    "I got my BS and MS in IT from the same university, two years apart.",
+    "I'm a student and a teacher at the same time: learning at UPOU while mentoring at Mapúa Malayan Digital College.",
+    "I've lived and worked in two countries: the Philippines and Singapore.",
+    "I've done UAT for so many releases that I read test scripts for fun. Almost."
+  ],
+  "contact": {
+    "title": "Let's talk",
+    "text": "Mentoring, a guest lecture, a digital-channel problem or a batch job that keeps waking you up. Send a note and I'll get back to you."
+  }
+}
