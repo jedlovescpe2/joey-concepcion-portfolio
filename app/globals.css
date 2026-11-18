@@ -643,3 +643,10 @@ button.rung { text-align: left; font: inherit; color: inherit; cursor: pointer; 
 .face-row button { opacity: 1; cursor: default; }
 .face-row button.on { border-color: transparent; }
 .hat img { height: min(64%, 300px); }
+/* selfie cut-out ends in hard crop lines at the shoulders: dissolve the bottom and side edges */
+.hero-photo img {
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, rgba(0,0,0,.55) 82%, transparent 100%), linear-gradient(to right, transparent 0%, #000 22%, #000 80%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, #000 62%, rgba(0,0,0,.55) 82%, transparent 100%), linear-gradient(to right, transparent 0%, #000 22%, #000 80%, transparent 100%);
+  mask-composite: intersect;
+}
