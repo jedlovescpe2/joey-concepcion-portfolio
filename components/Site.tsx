@@ -8,6 +8,8 @@ import { mountMotion } from "@/lib/motion";
 import { Arrow, Chars, Heading, Letters, Roll, Words } from "./Text";
 import { Visual } from "./Visuals";
 
+const HIRES_FACES = false;
+
 const HEADS: Record<Exclude<Page, "home">, { n: string; label: string; ghost: string; title: string; text: string }> = {
   experience: { n: "02", label: "Experience", ghost: "WORK", title: "Twenty years, fourteen roles", text: "From a mainframe at the Commission on Audit to digital channels across Asia. Tap any role for the full story." },
   skills: { n: "03", label: "Skills & certifications", ghost: "SKILLS", title: "The toolkit", text: "Seven databases, ten languages, and a shelf of certificates that kept growing after the degrees." },
@@ -80,7 +82,9 @@ export default function Site({ page = "home" }: { page?: Page }) {
   // About: the portrait cycles through his expressions
   const faces = useMemo(() => [{ label: "Hi", image: c.profile.photo }, ...(c.profile.expressions ?? [])], [c]);
   useEffect(() => {
-    if (page !== "home" || faces.length < 2) return;
+    // the expression crops are only ~250px (cut from the character sheet), so the big frame keeps the sharp photo
+    // until full-size expression portraits exist; flip HIRES_FACES then
+    if (!HIRES_FACES || page !== "home" || faces.length < 2) return;
     const id = window.setInterval(() => setFace((f) => (f + 1) % faces.length), 2800);
     return () => window.clearInterval(id);
   }, [page, faces.length, face]);
@@ -323,7 +327,7 @@ export default function Site({ page = "home" }: { page?: Page }) {
               </div>
               <div className="face-row" role="tablist" aria-label="Expressions">
                 {faces.map((f, i) => (
-                  <button key={f.image} role="tab" aria-selected={i === face} className={i === face ? "on" : undefined} onClick={() => setFace(i)} aria-label={f.label}>
+                  <button key={f.image} role="tab" aria-selected={i === face} className={i === face ? "on" : undefined} onClick={() => HIRES_FACES && setFace(i)} aria-label={f.label} title={f.label}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={f.image} alt="" />
                   </button>

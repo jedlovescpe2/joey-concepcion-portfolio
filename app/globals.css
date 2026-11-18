@@ -640,3 +640,6 @@ button.rung { text-align: left; font: inherit; color: inherit; cursor: pointer; 
   .rm-nav { grid-template-columns: 1fr 1fr; }
 }
 .hats-row.revealing .hat { transition: flex .7s cubic-bezier(.23,1,.32,1); }
+.face-row button { opacity: 1; cursor: default; }
+.face-row button.on { border-color: transparent; }
+.hat img { height: min(64%, 300px); }
