@@ -37,6 +37,24 @@
         "label": "Based in",
         "value": "Singapore"
       }
+    ],
+    "expressions": [
+      {
+        "label": "Happy",
+        "image": "/img/x-happy.webp"
+      },
+      {
+        "label": "Thinking",
+        "image": "/img/x-thinking.webp"
+      },
+      {
+        "label": "Laughing",
+        "image": "/img/x-laughing.webp"
+      },
+      {
+        "label": "Focused",
+        "image": "/img/x-focused.webp"
+      }
     ]
   },
   "brands": [
@@ -64,6 +82,69 @@
       "Agile, Scrum and Jira",
       "Digital marketing, UX and analytics",
       "Balancing full-time work with grad school"
+    ]
+  },
+  "hats": {
+    "title": "Many hats,",
+    "em": "one Joey.",
+    "lead": "Programmer, DBA, analyst, support lead, front-end manager, channel lead, mentor. Each hat taught the next one something.",
+    "items": [
+      {
+        "hat": "Programmer",
+        "years": "2",
+        "since": "2006",
+        "text": "Wrote COBOL and Visual Basic for the Commission on Audit, his first production code.",
+        "image": "/img/joey-cut.webp",
+        "role": "Programmer"
+      },
+      {
+        "hat": "Data architect",
+        "years": "2",
+        "since": "2010",
+        "text": "Ran Oracle for the national power grid, then designed data warehouses for clients.",
+        "image": "/img/x-thinking.webp",
+        "role": "Data Warehouse Architect"
+      },
+      {
+        "hat": "Systems analyst",
+        "years": "8",
+        "since": "2012",
+        "text": "Banks, payments and pharma in Singapore: requirements, design and the bridge between business and code.",
+        "image": "/img/x-focused.webp",
+        "role": "Senior Systems Analyst"
+      },
+      {
+        "hat": "Support lead",
+        "years": "2",
+        "since": "2013",
+        "text": "Kept private-banking systems running across regions and led the people on call.",
+        "image": "/img/x-happy.webp",
+        "role": "Senior Application Consultant / Production Support Lead"
+      },
+      {
+        "hat": "Front-end manager",
+        "years": "2",
+        "since": "2020",
+        "text": "Built accessible healthcare sites, then built and led the front-end team that ships them.",
+        "image": "/img/x-focused.webp",
+        "role": "Front-End Development Manager"
+      },
+      {
+        "hat": "Channel lead",
+        "years": "4",
+        "since": "2022",
+        "text": "Governance and strategy for web, email and mobile messaging across ASKAN.",
+        "image": "/img/joey.jpg",
+        "role": "Digital Channel Lead"
+      },
+      {
+        "hat": "Mentor",
+        "years": "1",
+        "since": "2026",
+        "text": "Teaching the next generation of IT professionals what twenty years in production taught him.",
+        "image": "/img/x-laughing.webp",
+        "role": ""
+      }
     ]
   },
   "stats": [
@@ -138,22 +219,42 @@
       {
         "when": "Nov 2020 – Oct 2021",
         "title": "Front-End Developer",
-        "text": "Built responsive, accessible web interfaces for healthcare-professional sites."
+        "text": "Built responsive, accessible web interfaces for healthcare-professional sites.",
+        "tags": [
+          "HTML · CSS · JS",
+          "Accessibility",
+          "Responsive"
+        ]
       },
       {
         "when": "Oct 2021 – Oct 2022",
         "title": "Front-End Development Manager",
-        "text": "Built and led the front-end team; set development standards and best practices."
+        "text": "Built and led the front-end team; set development standards and best practices.",
+        "tags": [
+          "Team lead",
+          "Standards",
+          "Code review"
+        ]
       },
       {
         "when": "Oct 2022 – Jan 2025",
         "title": "Channel Manager, Multi-Channel Excellence",
-        "text": "Managed digital platforms regionally, using analytics to lift engagement and conversion."
+        "text": "Managed digital platforms regionally, using analytics to lift engagement and conversion.",
+        "tags": [
+          "Analytics",
+          "Multi-channel",
+          "Engagement"
+        ]
       },
       {
         "when": "Jan 2025 – present",
         "title": "Digital Channel Lead",
-        "text": "Lead governance and strategy for web, email and mobile messaging across ASKAN."
+        "text": "Lead governance and strategy for web, email and mobile messaging across ASKAN.",
+        "tags": [
+          "Governance",
+          "Web · Email · Messaging",
+          "ASKAN"
+        ]
       }
     ]
   },
@@ -168,6 +269,14 @@
         "Ran website and email platform projects; provided 3rd-level support.",
         "Did UAT and rollout for a Salesforce-based incentives system, tracked in Jira under Scrum.",
         "Administered Veeva Vault and its integrations."
+      ],
+      "tags": [
+        "Salesforce",
+        "Jira",
+        "Scrum",
+        "Veeva Vault",
+        "UAT",
+        "3rd-level support"
       ]
     },
     {
@@ -178,6 +287,13 @@
       "points": [
         "Supported UAT, SIT and production environments for banking apps across four global regions.",
         "Checked data integrity across Oracle, Sybase and PostgreSQL; kept work SOX-compliant."
+      ],
+      "tags": [
+        "Oracle",
+        "Sybase",
+        "PostgreSQL",
+        "SOX",
+        "UAT · SIT"
       ]
     },
     {
@@ -189,6 +305,12 @@
         "Monitored global end-of-day batches across France, Japan, Dubai, Singapore and Hong Kong.",
         "Automated batch jobs with UNIX shell scripts; supported Sybase ASE 15 databases.",
         "Led a data migration project to DBS."
+      ],
+      "tags": [
+        "UNIX shell",
+        "Sybase ASE 15",
+        "EOD batches",
+        "Data migration"
       ]
     },
     {
@@ -199,6 +321,11 @@
       "points": [
         "Managed an outsourced development relationship and SQL administration.",
         "Produced monthly financial and operational reports for the billing system."
+      ],
+      "tags": [
+        "SQL admin",
+        "Vendor management",
+        "Billing reports"
       ]
     },
     {
@@ -209,6 +336,12 @@
       "points": [
         "Handled incidents, maintenance and deployments for billing and terminal systems, including 24/7 support.",
         "Wrote SQL data patches, UNIX scripts and SAP BusinessObjects reports."
+      ],
+      "tags": [
+        "SQL patches",
+        "UNIX scripts",
+        "SAP BusinessObjects",
+        "24/7 support"
       ]
     },
     {
@@ -219,6 +352,12 @@
       "points": [
         "Wrote test plans and scripts; tracked defects in Mercury Quality Center.",
         "Supported Control-M batch scheduling and ClearCase migrations."
+      ],
+      "tags": [
+        "Test planning",
+        "Mercury QC",
+        "Control-M",
+        "ClearCase"
       ]
     },
     {
@@ -229,6 +368,12 @@
       "points": [
         "Turned logical data models into Greenplum physical models and automated loads with Perl/Shell.",
         "Ran customer demos and proofs of concept; designed internal technical training."
+      ],
+      "tags": [
+        "Greenplum",
+        "Data modelling",
+        "Perl / Shell",
+        "Training"
       ]
     },
     {
@@ -238,6 +383,12 @@
       "industry": "Energy",
       "points": [
         "Administered SQL Server and Oracle databases: backups, disaster recovery and tuning."
+      ],
+      "tags": [
+        "SQL Server",
+        "Oracle",
+        "Backups & DR",
+        "Tuning"
       ]
     },
     {
@@ -248,6 +399,12 @@
       "points": [
         "Supported IFS financial systems and Control-M batches for global users.",
         "Built Java data-mapping tools, SQL reporting and Korn Shell/Perl utilities."
+      ],
+      "tags": [
+        "IFS",
+        "Control-M",
+        "Java",
+        "Korn Shell / Perl"
       ]
     },
     {
@@ -258,6 +415,11 @@
       "points": [
         "Built and maintained government financial and reporting systems (e-NGAS, AFR, RSAS).",
         "Wrote technical documentation for mainframe software and hardware."
+      ],
+      "tags": [
+        "Mainframe",
+        "e-NGAS",
+        "Documentation"
       ]
     }
   ],
@@ -613,5 +775,11 @@
   "contact": {
     "title": "Let's talk",
     "text": "Mentoring, a guest lecture, a digital-channel problem or a batch job that keeps waking you up. Send a note and I'll get back to you."
+  },
+  "sheet": {
+    "title": "Character sheet",
+    "text": "Turnaround, expressions, palette and the one gadget that is always on his wrist. A model sheet the way animators draw one, for a man who models systems before building them.",
+    "image": "/img/sheet.webp",
+    "turnaround": "/img/turnaround.webp"
   }
 }

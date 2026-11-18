@@ -95,21 +95,31 @@ export function mountMotion(root: HTMLElement, opts: Opts): () => void {
     if (open) gsap.fromTo(curtain.querySelectorAll("nav a span, nav a small"), { yPercent: 110 }, { yPercent: 0, duration: 0.8, ease: "power4.out", stagger: 0.035, delay: 0.25 });
   }) as EventListener);
 
-  /* role popup */
-  const modal = root.querySelector<HTMLElement>(".modal")!;
+  /* role popup (RoleModal animates itself; only pause smooth scroll here) */
   on(window, "modal", ((e: CustomEvent) => {
-    const open = e.detail as boolean;
-    if (open) lenis?.stop(); else lenis?.start();
-    gsap.to(modal, { opacity: open ? 1 : 0, duration: 0.35, ease: "power2.out" });
-    if (open) {
-      const box = modal.querySelector(".box");
-      if (box) gsap.fromTo(box, { y: 40, scale: 0.94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.4)" });
-    }
+    if (e.detail) lenis?.stop(); else lenis?.start();
   }) as EventListener);
+
+  /* ---------- hats accordion (Learnly) reveal ---------- */
+  ctx.add(() => {
+    if (reduced || !root.querySelector(".hats")) return;
+    gsap.from(".hats .hat", { y: 90, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.07, clearProps: "transform,opacity,translate,rotate,scale", onStart: () => root.querySelector(".hats-row")?.classList.add("revealing"), onComplete: () => root.querySelector(".hats-row")?.classList.remove("revealing"), scrollTrigger: { trigger: ".hats-row", start: "top 85%" } });
+    gsap.from(".hats-title .ln", { yPercent: 105, duration: 1, ease: "power4.out", stagger: 0.1, scrollTrigger: { trigger: ".hats-title", start: "top 82%" } });
+  });
 
   /* ---------- hero intro (Bold Portfolio Hero) ---------- */
   ctx.add(() => {
     if (reduced) return;
+    if (!root.querySelector(".hero")) {
+      // inner pages: banner intro instead of the hero
+      const ph = gsap.timeline({ delay: 0.1 });
+      ph.from(".page-head h1 .ltr", { yPercent: 110, duration: 0.9, ease: "power4.out", stagger: 0.025 })
+        .from(".page-head .ph-sub > *", { opacity: 0, y: 18, duration: 0.8, ease: "power3.out", stagger: 0.08 }, 0.35)
+        .from(".page-head .ph-ghost", { opacity: 0, scale: 0.9, duration: 1.4, ease: "power3.out" }, 0)
+        .from(".nav", { opacity: 0, y: -20, duration: 0.8, ease: "power3.out" }, 0.2);
+      gsap.to(".page-head .ph-ghost", { yPercent: 25, ease: "none", scrollTrigger: { trigger: ".page-head", start: "top top", end: "bottom top", scrub: true } });
+      return;
+    }
     const tl = gsap.timeline({ delay: 0.15 });
     tl.from(".hero h1 .hw", { yPercent: 110, duration: 1.1, ease: "power4.out", stagger: 0.12 })
       .from(".hero-badge", { opacity: 0, scale: 0.6, duration: 0.8, ease: "back.out(2)" }, 0.6)
@@ -269,6 +279,18 @@ export function mountMotion(root: HTMLElement, opts: Opts): () => void {
     kills.push(() => io.disconnect());
 
     let sx = 0, sr = 0, lx = 0, lt = 0, vel = 0, moved = 0, target: number | null = null;
+    // 3D hit-testing returns the perspective wrapper, so find the front-facing card whose projected box holds the point
+    const pick = (x: number, y: number) => {
+      let best: number | null = null, bz = -2;
+      tiles.forEach((t, i) => {
+        const facing = Math.cos(((i * step + rot) * Math.PI) / 180);
+        if (facing < 0.15) return;
+        const r = t.getBoundingClientRect();
+        if (x < r.left || x > r.right || y < r.top || y > r.bottom) return;
+        if (facing > bz) { bz = facing; best = Number(t.querySelector<HTMLElement>("[data-open]")?.dataset.open ?? i); }
+      });
+      return best;
+    };
     on(ribbon, "pointerdown", ((e: PointerEvent) => {
       dragging = true;
       inertia = 0;
@@ -277,8 +299,7 @@ export function mountMotion(root: HTMLElement, opts: Opts): () => void {
       lt = performance.now();
       moved = 0;
       vel = 0;
-      const card = (e.target as HTMLElement).closest("[data-open]") as HTMLElement | null;
-      target = card ? Number(card.dataset.open) : null;
+      target = pick(e.clientX, e.clientY);
       ribbon.setPointerCapture(e.pointerId);
       ribbon.classList.add("dragging");
     }) as EventListener);

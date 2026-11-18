@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description,
   openGraph: { title, description, type: "profile", images: ["/img/og.jpg"] },
   twitter: { card: "summary_large_image", title, description, images: ["/img/og.jpg"] },
-  icons: { icon: "/icon.svg" },
+  icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }, { url: "/favicon.ico", sizes: "48x48" }], apple: "/apple-touch-icon.png" },
 };
 
 export const viewport: Viewport = { themeColor: "#36421f", width: "device-width", initialScale: 1 };

@@ -20,14 +20,14 @@ export function mergeContent(saved: unknown): Content {
   return out as Content;
 }
 
-export const NAV = [
+export type Page = "home" | "experience" | "skills" | "story";
+export const NAV: { id: string; label: string; route?: Page }[] = [
   { id: "about", label: "About" },
+  { id: "hats", label: "Hats" },
   { id: "work", label: "Career" },
   { id: "approach", label: "Approach" },
-  { id: "experience", label: "Experience" },
-  { id: "skills", label: "Skills" },
-  { id: "certifications", label: "Certs" },
-  { id: "education", label: "Education" },
-  { id: "know", label: "Know me" },
+  { id: "experience", label: "Experience", route: "experience" },
+  { id: "skills", label: "Skills", route: "skills" },
+  { id: "story", label: "Story", route: "story" },
   { id: "contact", label: "Contact" },
 ];

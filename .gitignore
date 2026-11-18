@@ -8,3 +8,5 @@ credentials.local.txt
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+art/raw
+art/usage.jsonl

@@ -1,12 +1,18 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Content, NAV, Role, defaultContent, mergeContent } from "@/lib/content";
+import Link from "next/link";
+import { Content, NAV, Page, Role, defaultContent, mergeContent } from "@/lib/content";
+import RoleModal, { Tile } from "./RoleModal";
 import { mountMotion } from "@/lib/motion";
 import { Arrow, Chars, Heading, Letters, Roll, Words } from "./Text";
 import { Visual } from "./Visuals";
 
-type Tile = { when: string; title: string; org: string; industry: string; points: string[] };
+const HEADS: Record<Exclude<Page, "home">, { n: string; label: string; ghost: string; title: string; text: string }> = {
+  experience: { n: "02", label: "Experience", ghost: "WORK", title: "Twenty years, fourteen roles", text: "From a mainframe at the Commission on Audit to digital channels across Asia. Tap any role for the full story." },
+  skills: { n: "03", label: "Skills & certifications", ghost: "SKILLS", title: "The toolkit", text: "Seven databases, ten languages, and a shelf of certificates that kept growing after the degrees." },
+  story: { n: "04", label: "Story", ghost: "JOEY", title: "The person behind the CV", text: "Degrees, interests, the places his support reached, a mini game, and the character sheet." },
+};
 
 const icons: Record<string, React.ReactNode> = {
   spark: <path d="M20 4v8M20 28v8M4 20h8M28 20h8M9 9l5 5M26 26l5 5M31 9l-5 5M14 26l-5 5" />,
@@ -23,7 +29,7 @@ function telHref(p: string) {
   return "tel:" + p.replace(/[^\d+]/g, "");
 }
 
-export default function Site() {
+export default function Site({ page = "home" }: { page?: Page }) {
   const [c, setC] = useState<Content>(defaultContent);
   const [ver, setVer] = useState(0);
   const root = useRef<HTMLDivElement>(null);
@@ -33,6 +39,9 @@ export default function Site() {
   const [fact, setFact] = useState(0);
   const [guess, setGuess] = useState<number | null>(null);
   const [sending, setSending] = useState(false);
+  const [face, setFace] = useState(0);
+  const [hat, setHat] = useState(0);
+  const [zoom, setZoom] = useState<string | null>(null);
 
   // latest CMS content (the page ships with the bundled copy, then swaps in what the CMS saved)
   useEffect(() => {
@@ -55,8 +64,8 @@ export default function Site() {
 
   const tiles: Tile[] = useMemo(
     () => [
-      ...[...c.ladder.steps].reverse().map((s) => ({ when: s.when, title: s.title, org: c.ladder.org, industry: "Pharmaceuticals", points: [s.text] })),
-      ...c.roles.map((r: Role) => ({ when: r.when, title: r.title, org: r.org, industry: r.industry, points: r.points })),
+      ...[...c.ladder.steps].reverse().map((s) => ({ when: s.when, title: s.title, org: c.ladder.org, industry: "Pharmaceuticals", points: [s.text], tags: (s as { tags?: string[] }).tags ?? [] })),
+      ...c.roles.map((r: Role) => ({ when: r.when, title: r.title, org: r.org, industry: r.industry, points: r.points, tags: (r as { tags?: string[] }).tags ?? [] })),
     ],
     [c],
   );
@@ -66,7 +75,15 @@ export default function Site() {
   useEffect(() => {
     if (!root.current) return;
     return mountMotion(root.current, { onTile: openRole });
-  }, [ver, openRole]);
+  }, [ver, openRole, page]);
+
+  // About: the portrait cycles through his expressions
+  const faces = useMemo(() => [{ label: "Hi", image: c.profile.photo }, ...(c.profile.expressions ?? [])], [c]);
+  useEffect(() => {
+    if (page !== "home" || faces.length < 2) return;
+    const id = window.setInterval(() => setFace((f) => (f + 1) % faces.length), 2800);
+    return () => window.clearInterval(id);
+  }, [page, faces.length, face]);
 
   // curtain + modal animations are driven from motion.ts helpers
   useEffect(() => {
@@ -74,18 +91,22 @@ export default function Site() {
     window.dispatchEvent(new CustomEvent("curtain", { detail: menu }));
   }, [menu]);
   useEffect(() => {
-    window.dispatchEvent(new CustomEvent("modal", { detail: modal !== null }));
+    window.dispatchEvent(new CustomEvent("modal", { detail: modal !== null || zoom !== null }));
     const k = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setModal(null);
         setMenu(false);
+        setZoom(null);
       }
-      if (modal !== null && e.key === "ArrowRight") setModal((m) => ((m ?? 0) + 1) % tiles.length);
-      if (modal !== null && e.key === "ArrowLeft") setModal((m) => ((m ?? 0) - 1 + tiles.length) % tiles.length);
     };
     window.addEventListener("keydown", k);
     return () => window.removeEventListener("keydown", k);
-  }, [modal, tiles.length]);
+  }, [modal, zoom]);
+
+  const home = page === "home";
+  // on the home page anchors scroll; elsewhere they go back to the home page section
+  const href = (n: { id: string; route?: Page }) => (n.route ? `/${n.route}/` : n.id === "contact" || home ? `#${n.id}` : `/#${n.id}`);
+  const roleIndex = (title: string) => tiles.findIndex((x) => x.title === title);
 
   const flash = (m: string) => {
     setToast(m);
@@ -111,7 +132,6 @@ export default function Site() {
   }
 
   const p = c.profile;
-  const t = modal !== null ? tiles[modal] : null;
   const yr = new Date().getFullYear();
   const totalCountries = c.countries.reduce((n, r) => n + r.items.length, 0);
 
@@ -121,15 +141,27 @@ export default function Site() {
 
       {/* ---------- one floating nav ---------- */}
       <header className="nav" data-theme="dark">
-        <a href="#top" className="brand" aria-label="Back to top">
-          <b>✱</b> {p.first} {p.last}
-        </a>
+        {home ? (
+          <a href="#top" className="brand" aria-label="Back to top">
+            <b>✱</b> {p.first} {p.last}
+          </a>
+        ) : (
+          <Link href="/" className="brand" aria-label="Home">
+            <b>✱</b> {p.first} {p.last}
+          </Link>
+        )}
         <nav className="nav-links" aria-label="Sections">
-          {NAV.slice(0, 8).map((n) => (
-            <a key={n.id} href={`#${n.id}`} data-link={n.id}>
-              <Roll text={n.label} />
-            </a>
-          ))}
+          {NAV.slice(0, 7).map((n) =>
+            n.route ? (
+              <Link key={n.id} href={href(n)} className={page === n.route ? "here" : undefined} aria-current={page === n.route ? "page" : undefined}>
+                <Roll text={n.label} />
+              </Link>
+            ) : (
+              <a key={n.id} href={href(n)} data-link={home ? n.id : undefined}>
+                <Roll text={n.label} />
+              </a>
+            ),
+          )}
         </nav>
         <a href="#contact" className="nav-cta">
           <span className="t">Let&apos;s talk</span>
@@ -150,12 +182,19 @@ export default function Site() {
           </button>
         </div>
         <nav>
-          {NAV.map((n, i) => (
-            <a key={n.id} href={`#${n.id}`} onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1}>
-              <small>{String(i + 1).padStart(2, "0")}</small>
-              <span>{n.label === "Certs" ? "Certifications" : n.label}</span>
-            </a>
-          ))}
+          {NAV.map((n, i) =>
+            n.route ? (
+              <Link key={n.id} href={href(n)} onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1}>
+                <small>{String(i + 1).padStart(2, "0")}</small>
+                <span>{n.label}</span>
+              </Link>
+            ) : (
+              <a key={n.id} href={href(n)} onClick={() => setMenu(false)} tabIndex={menu ? 0 : -1}>
+                <small>{String(i + 1).padStart(2, "0")}</small>
+                <span>{n.label}</span>
+              </a>
+            ),
+          )}
         </nav>
         <div className="foot">
           <a href={p.linkedin} target="_blank" rel="noreferrer" tabIndex={menu ? 0 : -1}>
@@ -173,6 +212,36 @@ export default function Site() {
       </div>
 
       <main>
+        {!home && (
+          <section id="top" className="page-head" data-nav="dark">
+            <div className="ph-ghost" aria-hidden="true">
+              {HEADS[page as Exclude<Page, "home">].ghost}
+            </div>
+            <div className="blob br" />
+            <div className="wrap">
+              <span className="lbl-mono">
+                {HEADS[page as Exclude<Page, "home">].n} · {HEADS[page as Exclude<Page, "home">].label}
+              </span>
+              <h1>
+                <Letters text={HEADS[page as Exclude<Page, "home">].title} />
+              </h1>
+              <div className="ph-sub">
+                <p>{HEADS[page as Exclude<Page, "home">].text}</p>
+                <div className="ph-links">
+                  <Link href="/">← Home</Link>
+                  {NAV.filter((n) => n.route && n.route !== page).map((n) => (
+                    <Link key={n.id} href={href(n)}>
+                      {n.label} →
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {home && (
+          <>
         {/* ---------- HERO: Bold Portfolio Hero ---------- */}
         <section id="top" className="hero" data-nav="dark">
           <div className="hero-ghost" aria-hidden="true">
@@ -241,16 +310,34 @@ export default function Site() {
           </div>
         </section>
 
-        {/* ---------- ABOUT (light) ---------- */}
+        {/* ---------- ABOUT (light): sticky portrait column that cycles his expressions ---------- */}
         <section id="about" className="band light" data-nav="light">
           <div className="wrap about-grid">
-            <div>
-              <div className="ph">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.photo} alt={`Portrait of ${p.name}`} />
-                <div className="tagline">Hi, everyone!</div>
+            <aside className="about-side">
+              <div className="ph faces">
+                {faces.map((f, i) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img key={f.image} src={f.image} alt={i === 0 ? `Portrait of ${p.name}` : `${p.short}, ${f.label.toLowerCase()}`} className={i === face ? "on" : undefined} />
+                ))}
+                <div className="tagline">{face === 0 ? "Hi, everyone!" : faces[face]?.label}</div>
               </div>
-            </div>
+              <div className="face-row" role="tablist" aria-label="Expressions">
+                {faces.map((f, i) => (
+                  <button key={f.image} role="tab" aria-selected={i === face} className={i === face ? "on" : undefined} onClick={() => setFace(i)} aria-label={f.label}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={f.image} alt="" />
+                  </button>
+                ))}
+              </div>
+              <div className="now-list">
+                {p.now.map((n) => (
+                  <div key={n.label}>
+                    <small>{n.label}</small>
+                    <span>{n.value}</span>
+                  </div>
+                ))}
+              </div>
+            </aside>
             <div>
               <div className="sec-head">
                 <span className="lbl-mono">01 · About</span>
@@ -261,14 +348,6 @@ export default function Site() {
                   <p key={i} className="lit-text">
                     <Words text={t} />
                   </p>
-                ))}
-              </div>
-              <div className="now-list">
-                {p.now.map((n) => (
-                  <div key={n.label}>
-                    <small>{n.label}</small>
-                    <span>{n.value}</span>
-                  </div>
                 ))}
               </div>
               <div className="talk">
@@ -283,11 +362,78 @@ export default function Site() {
           </div>
         </section>
 
+        {/* ---------- MANY HATS: Learnly accordion ---------- */}
+        <section id="hats" className="band hats" data-nav="light">
+          <div className="wrap hats-grid">
+            <div className="hats-left">
+              <span className="lbl-mono">02 · Many hats</span>
+              <h2 className="hats-title">
+                <span className="m"><span className="ln">Build.</span></span>
+                <span className="m"><span className="ln">Lead.</span></span>
+                <span className="m"><span className="ln"><em>Teach.</em></span></span>
+              </h2>
+              <p className="hats-lead">{c.hats.lead}</p>
+              <div className="hats-pick">
+                <span>{c.hats.items[hat]?.hat}</span>
+                <button
+                  onClick={() => {
+                    const i = roleIndex(c.hats.items[hat]?.role ?? "");
+                    if (i >= 0) setModal(i);
+                    else document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  {c.hats.items[hat]?.role ? "See the role" : "Book a session"}
+                </button>
+              </div>
+            </div>
+            <div className="hats-row">
+              {c.hats.items.map((h, i) => (
+                <button
+                  key={h.hat}
+                  className={`hat${i === hat ? " on" : ""}`}
+                  onMouseEnter={() => setHat(i)}
+                  onFocus={() => setHat(i)}
+                  onClick={() => {
+                    // desktop: first click opens the card, second opens the story; phones show every card open, so one tap
+                    if (i !== hat && !matchMedia("(max-width: 768px)").matches) return setHat(i);
+                    setHat(i);
+                    const r = h.role ? roleIndex(h.role) : -1;
+                    if (r >= 0) setModal(r);
+                    else document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  aria-expanded={i === hat}
+                  aria-label={`${h.hat}, since ${h.since}`}
+                  style={{ ["--i" as string]: i }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={h.image} alt="" />
+                  <span className="hat-ghost" aria-hidden="true">{h.since}</span>
+                  <span className="hat-side" aria-hidden="true">
+                    <span className="v">{h.hat}</span>
+                  </span>
+                  <span className="hat-body">
+                    <span className="hat-top">
+                      <span className="hat-title">{h.hat}</span>
+                      <span className="hat-num">
+                        <b>{h.years}</b>
+                        <small>{h.years === "1" ? "year" : "years"}</small>
+                      </span>
+                    </span>
+                    <span className="hat-text">{h.text}</span>
+                    <span className="hat-cta">{h.role ? "Open the role →" : "Book mentoring →"}</span>
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+          <p className="hats-foot">{c.hats.title} <em>{c.hats.em}</em></p>
+        </section>
+
         {/* ---------- CAREER RING: Dark Portfolio ribbon ---------- */}
         <section id="work" className="ring-sec dark" data-nav="dark">
           <div className="ring-head sec-head" style={{ margin: "0 auto 0" }}>
             <span className="lbl-mono" style={{ justifyContent: "center" }}>
-              02 · Career
+              03 · Career
             </span>
             <Heading text={`${c.stats[1]?.value ?? 12} organisations,`} em="one career." />
             <p>Fourteen roles, from a mainframe in Manila to digital channels across a region. Drag the ring, then tap a card to see what I did there.</p>
@@ -362,7 +508,7 @@ export default function Site() {
 
         {/* ---------- HOW I WORK: Dark Portfolio zig-zag ---------- */}
         <section id="approach" className="dark how" data-nav="dark">
-          <div className="how-head">•&nbsp; 03 · How I work</div>
+          <div className="how-head">•&nbsp; 04 · How I work</div>
           <div className="sec-head" style={{ marginBottom: 0 }}>
             <Heading text="Twenty years of habits" em="worth teaching." />
           </div>
@@ -380,11 +526,16 @@ export default function Site() {
           ))}
         </section>
 
+          </>
+        )}
+
+        {page === "experience" && (
+          <>
         {/* ---------- EXPERIENCE (light) ---------- */}
-        <section id="experience" className="band light" data-nav="light">
+        <section id="experience" className="band light" data-nav="light" style={{ paddingTop: 80 }}>
           <div className="wrap">
             <div className="sec-head">
-              <span className="lbl-mono">04 · Experience</span>
+              <span className="lbl-mono">02 · Experience</span>
               <Heading text="From databases and batch jobs" em="to the classroom." />
               <p className="lit-text">
                 <Words text="Two decades in IT across banking, payments, telecoms, energy, government and pharma, in Singapore and the Philippines." />
@@ -413,11 +564,12 @@ export default function Site() {
             </div>
             <div className="ladder">
               {c.ladder.steps.map((s) => (
-                <div className="rung card" key={s.title}>
+                <button className="rung card" key={s.title} onClick={() => setModal(roleIndex(s.title))}>
                   <div className="when">{s.when}</div>
                   <h4>{s.title}</h4>
                   <p>{s.text}</p>
-                </div>
+                  <span className="go">Story →</span>
+                </button>
               ))}
             </div>
             <div className="ladder-cap">{c.ladder.caption}</div>
@@ -429,7 +581,7 @@ export default function Site() {
             <ul className="tl">
               <span className="draw" />
               {c.roles.map((r, i) => (
-                <li key={i} onClick={() => setModal(c.ladder.steps.length + i)} tabIndex={0} onKeyDown={(e) => e.key === "Enter" && setModal(c.ladder.steps.length + i)}>
+                <li key={i} onClick={() => setModal(roleIndex(r.title))} tabIndex={0} onKeyDown={(e) => e.key === "Enter" && setModal(roleIndex(r.title))}>
                   <span className="when">{r.when}</span>
                   <div>
                     <h4>{r.title}</h4>
@@ -447,11 +599,16 @@ export default function Site() {
           </div>
         </section>
 
+          </>
+        )}
+
+        {page === "skills" && (
+          <>
         {/* ---------- SKILLS (light) ---------- */}
         <section id="skills" className="band light" data-nav="light" style={{ paddingTop: 80 }}>
           <div className="wrap">
             <div className="sec-head">
-              <span className="lbl-mono">05 · Skills</span>
+              <span className="lbl-mono">03 · Skills</span>
               <Heading text="Seven databases," em="ten languages." />
             </div>
             <div className="skills-grid">
@@ -476,7 +633,7 @@ export default function Site() {
         <section id="certifications" className="band dark" data-nav="dark">
           <div className="wrap">
             <div className="sec-head">
-              <span className="lbl-mono">06 · Certifications</span>
+              <span className="lbl-mono">03 · Certifications</span>
               <Heading text="Still collecting" em="certificates." />
               <p className="lit-text">
                 <Words text="Service management, agile delivery, UX and digital marketing, analytics and leadership. Learning never stopped after the degrees." />
@@ -505,11 +662,16 @@ export default function Site() {
           </div>
         </section>
 
+          </>
+        )}
+
+        {page === "story" && (
+          <>
         {/* ---------- EDUCATION (light) ---------- */}
         <section id="education" className="band light" data-nav="light">
           <div className="wrap">
             <div className="sec-head">
-              <span className="lbl-mono">07 · Education</span>
+              <span className="lbl-mono">04 · Education</span>
               <Heading text="Four degrees," em="one in progress." />
             </div>
             <div className="edu">
@@ -529,7 +691,7 @@ export default function Site() {
         <section id="know" className="band dark" data-nav="dark">
           <div className="wrap">
             <div className="sec-head">
-              <span className="lbl-mono">08 · Get to know me</span>
+              <span className="lbl-mono">04 · Get to know me</span>
               <Heading text="Outside the" em="server room." />
               <p className="lit-text">
                 <Words text="Outside work, I lean towards things that keep me learning and give me fresh perspective." />
@@ -629,6 +791,36 @@ export default function Site() {
           </div>
         </section>
 
+        {/* ---------- CHARACTER SHEET ---------- */}
+        <section id="sheet" className="band light sheet-sec" data-nav="light">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="lbl-mono">04 · {c.sheet.title}</span>
+              <Heading text="Drawn like an" em="animated lead." />
+              <p className="lit-text">
+                <Words text={c.sheet.text} />
+              </p>
+            </div>
+            <button className="sheet-main card" onClick={() => setZoom(c.sheet.image)} aria-label="Open the character sheet full size">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.sheet.image} alt={`Character sheet of ${p.name}: turnaround, expressions and palette`} loading="lazy" />
+              <span className="zoom-hint">Tap to zoom ⤢</span>
+            </button>
+            <div className="sheet-faces">
+              {(p.expressions ?? []).map((f) => (
+                <button key={f.image} className="card tilt" onClick={() => setZoom(f.image)}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={f.image} alt={`${p.short}, ${f.label.toLowerCase()}`} loading="lazy" />
+                  <span>{f.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+          </>
+        )}
+
         {/* ---------- CONTACT (Bold hero colours as the bookend) ---------- */}
         <section id="contact" className="band contact" data-nav="dark">
           <div className="blob bl" />
@@ -637,7 +829,7 @@ export default function Site() {
             <div className="contact-grid">
               <div>
                 <span className="lbl-mono" style={{ opacity: 0.85 }}>
-                  09 · Contact
+                  05 · Contact
                 </span>
                 <h2 style={{ marginTop: 16 }}>
                   <Letters text={c.contact.title} />
@@ -714,30 +906,17 @@ export default function Site() {
         </section>
       </main>
 
-      {/* role popup */}
-      <div className={`modal${t ? " open" : ""}`} onClick={(e) => e.target === e.currentTarget && setModal(null)} role="dialog" aria-modal="true" aria-hidden={!t}>
-        {t && (
-          <div className="box">
-            <button className="x" aria-label="Close" onClick={() => setModal(null)}>
-              ×
-            </button>
-            <div className="when">
-              {t.when} · {t.industry}
-            </div>
-            <h3>{t.title}</h3>
-            <div className="org">{t.org}</div>
-            <ul>
-              {t.points.map((x) => (
-                <li key={x}>{x}</li>
-              ))}
-            </ul>
-            <div className="nav2">
-              <button onClick={() => setModal((m) => ((m ?? 0) - 1 + tiles.length) % tiles.length)}>← Previous</button>
-              <button onClick={() => setModal((m) => ((m ?? 0) + 1) % tiles.length)}>Next →</button>
-            </div>
-          </div>
-        )}
-      </div>
+      <RoleModal tiles={tiles} index={modal} onClose={() => setModal(null)} onGo={setModal} />
+
+      {zoom && (
+        <div className="zoom" role="dialog" aria-modal="true" aria-label="Image viewer" onClick={() => setZoom(null)} data-lenis-prevent>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={zoom} alt="" />
+          <button className="rm-x" aria-label="Close" onClick={() => setZoom(null)}>
+            ×
+          </button>
+        </div>
+      )}
 
       <div className={`toast${toast ? " show" : ""}`} role="status">
         {toast}

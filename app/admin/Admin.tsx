@@ -15,6 +15,7 @@ const SECTIONS: { key: keyof Content; label: string; hint: string }[] = [
   { key: "profile", label: "Profile & contact", hint: "Name, hero text, photo, email, phone and social links." },
   { key: "brands", label: "Logo strip", hint: "Organisations scrolling at the bottom of the hero." },
   { key: "about", label: "About", hint: "Bio paragraphs and talking points." },
+  { key: "hats", label: "Many hats", hint: "Accordion cards on the home page. Role must match a role title exactly to open its story; leave it empty to link to Contact." },
   { key: "stats", label: "Numbers", hint: "The four counters in the arch section." },
   { key: "arch", label: "Arch card", hint: "Text inside the shrinking arch." },
   { key: "approach", label: "How I work", hint: "Four zig-zag rows. Visual: uml, code, terminal or chart." },
@@ -31,6 +32,7 @@ const SECTIONS: { key: keyof Content; label: string; hint: string }[] = [
   { key: "countries", label: "Countries", hint: "Production-support reach by region." },
   { key: "game", label: "Two truths & a lie", hint: "Mark exactly one statement as the lie." },
   { key: "facts", label: "Fun facts", hint: "" },
+  { key: "sheet", label: "Character sheet", hint: "Story page: the model sheet image and its caption." },
   { key: "contact", label: "Contact text", hint: "" },
 ];
 
