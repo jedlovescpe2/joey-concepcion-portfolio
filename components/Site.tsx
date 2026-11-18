@@ -66,8 +66,8 @@ export default function Site({ page = "home" }: { page?: Page }) {
 
   const tiles: Tile[] = useMemo(
     () => [
-      ...[...c.ladder.steps].reverse().map((s) => ({ when: s.when, title: s.title, org: c.ladder.org, industry: "Pharmaceuticals", points: [s.text], tags: (s as { tags?: string[] }).tags ?? [] })),
-      ...c.roles.map((r: Role) => ({ when: r.when, title: r.title, org: r.org, industry: r.industry, points: r.points, tags: (r as { tags?: string[] }).tags ?? [] })),
+      ...[...c.ladder.steps].reverse().map((s) => ({ when: s.when, title: s.title, org: c.ladder.org, industry: "Pharmaceuticals", points: [s.text], tags: (s as { tags?: string[] }).tags ?? [], image: (s as { image?: string }).image })),
+      ...c.roles.map((r: Role) => ({ when: r.when, title: r.title, org: r.org, industry: r.industry, points: r.points, tags: (r as { tags?: string[] }).tags ?? [], image: (r as { image?: string }).image })),
     ],
     [c],
   );
@@ -460,7 +460,11 @@ export default function Site({ page = "home" }: { page?: Page }) {
               <div className="spinner">
                 {tiles.map((r, i) => (
                   <div className="tile" key={i} data-i={i}>
-                    <button className="card" data-open={i} aria-label={`${r.title}, ${r.org}`}>
+                    <button className={`card${r.image ? " has-photo" : ""}`} data-open={i} aria-label={`${r.title}, ${r.org}`}>
+                      {r.image && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img className="card-photo" src={r.image} alt="" loading="lazy" draggable={false} />
+                      )}
                       <div>
                         <div className="when">{r.when}</div>
                       </div>

@@ -670,3 +670,19 @@ button.rung { text-align: left; font: inherit; color: inherit; cursor: pointer; 
   box-shadow: inset 0 0 0 1.5px rgba(200,150,60,.55), 0 40px 80px -30px rgba(20,24,14,.5); }
 .hero-photo .brush::before { content: ""; position: absolute; inset: -14px -14px 0 -14px; border-radius: inherit; border: 1px solid rgba(246,243,231,.18); border-bottom: 0;
   -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 95%); mask-image: linear-gradient(to bottom, #000 55%, transparent 95%); }
+
+/* ---------- career ring: role photo on the right half, fading into the card ---------- */
+.tile .card > *:not(.card-photo) { position: relative; z-index: 2; }
+.card-photo { position: absolute; top: 0; right: 0; bottom: 0; width: 54%; height: 100%; object-fit: cover; object-position: 50% 14%; z-index: 0; pointer-events: none; user-select: none;
+  filter: saturate(.85) contrast(1.02);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.55) 28%, #000 62%), linear-gradient(to top, transparent 0%, #000 34%); -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.55) 28%, #000 62%), linear-gradient(to top, transparent 0%, #000 34%); mask-composite: intersect; }
+.tile .card.has-photo::after { z-index: 1; opacity: .5; }
+.tile .card.has-photo h3, .tile .card.has-photo .org { max-width: 60%; text-shadow: 0 2px 18px rgba(10,14,6,.6); }
+.tile .card.has-photo h3 { font-size: 42px; }
+
+/* role story: the same photo, faint, behind the olive side panel */
+.rm-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; opacity: .32; filter: grayscale(.35);
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 92%); mask-image: linear-gradient(to bottom, #000 30%, transparent 92%); pointer-events: none; }
+.rm-side > *:not(.rm-photo) { position: relative; z-index: 1; }
+.rm-photo { opacity: .2; filter: grayscale(.4) blur(3px); transform: scale(1.06); }

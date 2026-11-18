@@ -224,7 +224,8 @@
           "HTML · CSS · JS",
           "Accessibility",
           "Responsive"
-        ]
+        ],
+        "image": "/img/hat-frontend.webp"
       },
       {
         "when": "Oct 2021 – Oct 2022",
@@ -234,7 +235,8 @@
           "Team lead",
           "Standards",
           "Code review"
-        ]
+        ],
+        "image": "/img/hat-frontend.webp"
       },
       {
         "when": "Oct 2022 – Jan 2025",
@@ -244,7 +246,8 @@
           "Analytics",
           "Multi-channel",
           "Engagement"
-        ]
+        ],
+        "image": "/img/hat-lead.webp"
       },
       {
         "when": "Jan 2025 – present",
@@ -254,7 +257,8 @@
           "Governance",
           "Web · Email · Messaging",
           "ASKAN"
-        ]
+        ],
+        "image": "/img/hat-lead.webp"
       }
     ]
   },
@@ -277,7 +281,8 @@
         "Veeva Vault",
         "UAT",
         "3rd-level support"
-      ]
+      ],
+      "image": "/img/hat-analyst.webp"
     },
     {
       "title": "Team Lead, Technical Environment Support",
@@ -294,7 +299,8 @@
         "PostgreSQL",
         "SOX",
         "UAT · SIT"
-      ]
+      ],
+      "image": "/img/hat-support.webp"
     },
     {
       "title": "Senior Application Consultant / Production Support Lead",
@@ -311,7 +317,8 @@
         "Sybase ASE 15",
         "EOD batches",
         "Data migration"
-      ]
+      ],
+      "image": "/img/hat-support.webp"
     },
     {
       "title": "Senior Systems Analyst",
@@ -326,7 +333,8 @@
         "SQL admin",
         "Vendor management",
         "Billing reports"
-      ]
+      ],
+      "image": "/img/hat-analyst.webp"
     },
     {
       "title": "Senior System Analyst",
@@ -342,7 +350,8 @@
         "UNIX scripts",
         "SAP BusinessObjects",
         "24/7 support"
-      ]
+      ],
+      "image": "/img/hat-analyst.webp"
     },
     {
       "title": "Analyst Programmer",
@@ -358,7 +367,8 @@
         "Mercury QC",
         "Control-M",
         "ClearCase"
-      ]
+      ],
+      "image": "/img/hat-programmer.webp"
     },
     {
       "title": "Data Warehouse Architect",
@@ -374,7 +384,8 @@
         "Data modelling",
         "Perl / Shell",
         "Training"
-      ]
+      ],
+      "image": "/img/hat-data.webp"
     },
     {
       "title": "Database Administrator",
@@ -389,7 +400,8 @@
         "Oracle",
         "Backups & DR",
         "Tuning"
-      ]
+      ],
+      "image": "/img/hat-data.webp"
     },
     {
       "title": "Information System Specialist",
@@ -405,7 +417,8 @@
         "Control-M",
         "Java",
         "Korn Shell / Perl"
-      ]
+      ],
+      "image": "/img/hat-programmer.webp"
     },
     {
       "title": "Programmer",
@@ -420,7 +433,8 @@
         "Mainframe",
         "e-NGAS",
         "Documentation"
-      ]
+      ],
+      "image": "/img/hat-programmer.webp"
     }
   ],
   "industries": [

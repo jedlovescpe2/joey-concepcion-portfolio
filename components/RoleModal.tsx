@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 
-export type Tile = { when: string; title: string; org: string; industry: string; points: string[]; tags: string[] };
+export type Tile = { when: string; title: string; org: string; industry: string; points: string[]; tags: string[]; image?: string };
 
 const START = 2006, END = 2026;
 function span(when: string) {
@@ -116,6 +116,10 @@ export default function RoleModal({ tiles, index, onClose, onGo }: { tiles: Tile
         {t && (
           <div ref={body} className="rm-body" key={index}>
             <aside className="rm-side">
+              {t.image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img className="rm-photo" src={t.image} alt="" />
+              )}
               <div className="meta">
                 <span className="idx">
                   {String(index! + 1).padStart(2, "0")} <i>/ {String(n).padStart(2, "0")}</i>
