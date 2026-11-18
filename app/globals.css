@@ -708,7 +708,6 @@ button.rung { text-align: left; font: inherit; color: inherit; cursor: pointer; 
 .film-label { text-align: center; color: var(--sage-300); margin-bottom: 18px; }
 .film-row { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
 .film-track { display: flex; gap: 14px; width: max-content; animation: film 70s linear infinite; }
-.film-row.rev .film-track { animation-direction: reverse; animation-duration: 85s; }
 .film:hover .film-track { animation-play-state: paused; }
 .film-track img { height: clamp(170px, 22vw, 290px); aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 18%; border-radius: 16px; filter: grayscale(.6) brightness(.8); transition: filter .5s, transform .5s var(--ease); }
 .film-track img:hover { filter: none; transform: translateY(-6px) scale(1.03); }
@@ -745,3 +744,22 @@ button.rung { text-align: left; font: inherit; color: inherit; cursor: pointer; 
 .tl-who img { width: 52px; height: 52px; flex: none; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 2px solid var(--paper); box-shadow: 0 0 0 1px var(--line-l); filter: grayscale(.4); transition: filter .4s, transform .4s var(--ease); }
 .tl > li:hover .tl-who img, .tl > li.lit .tl-who img { filter: none; transform: scale(1.08); }
 .now-card .b .diag span { background: rgba(43,53,27,.72); backdrop-filter: blur(6px); }
+/* film strip, calmer: one row, smaller frames, word cards between photos */
+.film { gap: 0; padding: clamp(50px, 6vw, 80px) 0; }
+.film-track { gap: 18px; align-items: center; animation-duration: 60s; }
+.film-track img { height: clamp(150px, 15vw, 210px); filter: grayscale(.35) brightness(.88); }
+.film-word { flex: none; display: grid; place-items: center; height: clamp(110px, 11vw, 150px); padding: 0 clamp(22px, 2.4vw, 34px); border-radius: 999px; border: 1px solid rgba(183,195,143,.25); color: var(--cream);
+  font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(22px, 2.2vw, 32px); white-space: nowrap; background: radial-gradient(circle at 30% 20%, rgba(200,150,60,.16), transparent 70%); }
+.film-word:nth-of-type(odd) { color: var(--ochre); }
+/* send button: visible olive arrow disc on the white pill */
+.form .pill { padding: 10px 10px 10px 26px; gap: 18px; transition: transform .3s, box-shadow .3s; }
+.form .pill .arr { width: 38px; height: 38px; background: var(--olive-700); color: #fff; font-size: 16px; transition: transform .35s; }
+.form .pill:hover { box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.form .pill:hover .arr { transform: translateX(3px) rotate(-45deg); }
+.form .pill:disabled { opacity: .6; }
+@media (max-width: 600px) { .form .pill { justify-self: stretch; justify-content: space-between; } }
+/* film strip: face-free detail shots, tighter */
+.film { padding: clamp(28px, 4vw, 48px) 0; }
+.film-track { gap: 12px; }
+.film-track img { height: clamp(120px, 12vw, 170px); width: auto; aspect-ratio: auto; object-position: center; border-radius: 18px; filter: saturate(.85) brightness(.92); }
+.film-word { height: clamp(64px, 6vw, 84px); font-size: clamp(18px, 1.7vw, 24px); padding: 0 clamp(18px, 2vw, 28px); }

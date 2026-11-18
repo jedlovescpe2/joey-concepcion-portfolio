@@ -554,19 +554,20 @@ export default function Site({ page = "home" }: { page?: Page }) {
             {c.film?.images?.length > 0 && (
             <section className="film" data-nav="dark" aria-label={c.film.label}>
               <div className="film-label lbl-mono">✱ {c.film.label}</div>
-              {[0, 1].map((row) => {
-                const imgs = row ? [...c.film.images].reverse() : c.film.images;
-                return (
-                  <div className={`film-row${row ? " rev" : ""}`} key={row} aria-hidden={row === 1}>
-                    <div className="film-track">
-                      {[...imgs, ...imgs].map((src, i) => (
+              <div className="film-row">
+                <div className="film-track">
+                  {[0, 1].flatMap((dup) =>
+                    c.film.images.flatMap((src, i) => {
+                      const w = (c.film as { words?: string[] }).words?.[i % ((c.film as { words?: string[] }).words?.length || 1)];
+                      return [
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img key={i} src={src} alt="" loading="lazy" draggable={false} />
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
+                        <img key={`i${dup}-${i}`} src={src} alt="" loading="lazy" draggable={false} aria-hidden={dup === 1} />,
+                        ...(w ? [<span key={`w${dup}-${i}`} className="film-word" aria-hidden={dup === 1}>{w}</span>] : []),
+                      ];
+                    }),
+                  )}
+                </div>
+              </div>
             </section>
             )}
           </>

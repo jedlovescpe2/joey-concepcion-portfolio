@@ -831,20 +831,20 @@
   "film": {
     "label": "On the job · off the clock",
     "images": [
-      "/img/hat-lead.webp",
-      "/img/hobby-badminton.webp",
-      "/img/hat-data.webp",
-      "/img/x-laughing.webp",
-      "/img/hat-mentor.webp",
-      "/img/hobby-mahjong.webp",
-      "/img/hat-support.webp",
-      "/img/hobby-reading.webp",
-      "/img/hat-analyst.webp",
-      "/img/x-thinking.webp",
-      "/img/hobby-pickleball.webp",
-      "/img/hat-frontend.webp",
-      "/img/hat-programmer.webp",
-      "/img/x-happy.webp"
+      "/img/film-mahjong.webp",
+      "/img/film-screen.webp",
+      "/img/film-pickleball.webp",
+      "/img/film-skyline.webp",
+      "/img/film-reading.webp",
+      "/img/film-shuttle.webp"
+    ],
+    "words": [
+      "Mahjong nights",
+      "Front-end builds",
+      "Pickleball",
+      "Digital channel lead",
+      "Novels by the window",
+      "Badminton"
     ]
   }
 }

@@ -129,13 +129,35 @@ export function mountMotion(root: HTMLElement, opts: Opts): () => void {
       .from(".brands", { opacity: 0, duration: 1 }, 1)
       .from(".nav", { opacity: 0, y: -20, duration: 0.8, ease: "power3.out" }, 0.3);
     // parallax on scroll out
-    gsap.to(".hero h1", { yPercent: 30, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
-    gsap.to(".hero-photo", { yPercent: -12, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    // headline + badge drift up and away from the portrait, so text never slides onto his face
+    gsap.to(".hero h1", { yPercent: -35, opacity: 0.2, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    gsap.to(".hero-badge", { y: () => -innerHeight * 0.3, opacity: 0, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "60% top", scrub: true, invalidateOnRefresh: true } });
+    gsap.to(".hero-photo", { yPercent: 6, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
     gsap.to(".hero-ghost", { scale: 1.15, opacity: 0.4, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   });
   // the hero portrait leans toward the cursor
   const photo = root.querySelector<HTMLElement>(".hero-photo");
   const hero = root.querySelector<HTMLElement>(".hero");
+  // keep the portrait's top (his hair) at least 18px below the "IN IT" badge, measured from layout (not transforms)
+  const badge = root.querySelector<HTMLElement>(".hero-badge");
+  if (photo && hero && badge) {
+    const topIn = (el: HTMLElement) => {
+      let y = 0, n: HTMLElement | null = el;
+      while (n && n !== hero) { y += n.offsetTop; n = n.offsetParent as HTMLElement | null; }
+      return y;
+    };
+    const fitPhoto = () => {
+      photo.style.height = "";
+      photo.style.marginTop = "";
+      const over = topIn(badge) + badge.offsetHeight + 18 - topIn(photo);
+      if (over <= 0) return;
+      if (getComputedStyle(photo).position === "absolute") photo.style.height = `${Math.max(240, photo.offsetHeight - over)}px`;
+      else photo.style.marginTop = `${parseFloat(getComputedStyle(photo).marginTop) + over}px`;
+    };
+    fitPhoto();
+    document.fonts?.ready.then(fitPhoto);
+    on(window, "resize", fitPhoto);
+  }
   if (photo && hero && fine && !reduced) {
     on(hero, "mousemove", ((e: MouseEvent) => {
       const x = e.clientX / innerWidth - 0.5, y = e.clientY / innerHeight - 0.5;
