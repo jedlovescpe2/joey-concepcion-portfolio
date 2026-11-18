@@ -10,10 +10,10 @@ import { Visual } from "./Visuals";
 
 const HIRES_FACES = true;
 
-const HEADS: Record<Exclude<Page, "home">, { n: string; label: string; ghost: string; title: string; text: string }> = {
-  experience: { n: "02", label: "Experience", ghost: "WORK", title: "Twenty years, fourteen roles", text: "From a mainframe at the Commission on Audit to digital channels across Asia. Tap any role for the full story." },
-  skills: { n: "03", label: "Skills & certifications", ghost: "SKILLS", title: "The toolkit", text: "Seven databases, ten languages, and a shelf of certificates that kept growing after the degrees." },
-  story: { n: "04", label: "Story", ghost: "JOEY", title: "The person behind the CV", text: "Degrees, interests, the places his support reached, a mini game, and the character sheet." },
+const HEADS: Record<Exclude<Page, "home">, { n: string; label: string; ghost: string; title: string; text: string; image: string }> = {
+  experience: { n: "02", label: "Experience", ghost: "WORK", title: "Twenty years, fourteen roles", text: "From a mainframe at the Commission on Audit to digital channels across Asia. Tap any role for the full story.", image: "/img/hat-lead.webp" },
+  skills: { n: "03", label: "Skills & certifications", ghost: "SKILLS", title: "The toolkit", text: "Seven databases, ten languages, and a shelf of certificates that kept growing after the degrees.", image: "/img/hat-analyst.webp" },
+  story: { n: "04", label: "Story", ghost: "JOEY", title: "The person behind the CV", text: "Badminton, pickleball, mahjong and novels, then degrees, the places his support reached, a mini game and the character sheet.", image: "/img/hobby-reading.webp" },
 };
 
 const icons: Record<string, React.ReactNode> = {
@@ -234,6 +234,8 @@ export default function Site({ page = "home" }: { page?: Page }) {
             <div className="ph-ghost" aria-hidden="true">
               {HEADS[page as Exclude<Page, "home">].ghost}
             </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ph-photo" src={HEADS[page as Exclude<Page, "home">].image} alt="" />
             <div className="blob br" />
             <div className="wrap">
               <span className="lbl-mono">
@@ -547,6 +549,26 @@ export default function Site({ page = "home" }: { page?: Page }) {
           ))}
         </section>
 
+
+            {/* ---------- photo film strip between "How I work" and Contact ---------- */}
+            {c.film?.images?.length > 0 && (
+            <section className="film" data-nav="dark" aria-label={c.film.label}>
+              <div className="film-label lbl-mono">✱ {c.film.label}</div>
+              {[0, 1].map((row) => {
+                const imgs = row ? [...c.film.images].reverse() : c.film.images;
+                return (
+                  <div className={`film-row${row ? " rev" : ""}`} key={row} aria-hidden={row === 1}>
+                    <div className="film-track">
+                      {[...imgs, ...imgs].map((src, i) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img key={i} src={src} alt="" loading="lazy" draggable={false} />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </section>
+            )}
           </>
         )}
 
@@ -571,6 +593,10 @@ export default function Site({ page = "home" }: { page?: Page }) {
                 <p>{c.current.text}</p>
               </div>
               <div className="b">
+                {(c.current as { image?: string }).image && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img className="now-photo" src={(c.current as { image?: string }).image} alt={`${p.short} teaching`} loading="lazy" />
+                )}
                 <div className="diag">
                   {c.current.tags.map((x) => (
                     <span key={x}>{x}</span>
@@ -586,6 +612,12 @@ export default function Site({ page = "home" }: { page?: Page }) {
             <div className="ladder">
               {c.ladder.steps.map((s) => (
                 <button className="rung card" key={s.title} onClick={() => setModal(roleIndex(s.title))}>
+                  {(s as { image?: string }).image && (
+                    <span className="rung-photo">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={(s as { image?: string }).image} alt="" loading="lazy" />
+                    </span>
+                  )}
                   <div className="when">{s.when}</div>
                   <h4>{s.title}</h4>
                   <p>{s.text}</p>
@@ -604,9 +636,15 @@ export default function Site({ page = "home" }: { page?: Page }) {
               {c.roles.map((r, i) => (
                 <li key={i} onClick={() => setModal(roleIndex(r.title))} tabIndex={0} onKeyDown={(e) => e.key === "Enter" && setModal(roleIndex(r.title))}>
                   <span className="when">{r.when}</span>
-                  <div>
-                    <h4>{r.title}</h4>
-                    <div className="org">{r.org}</div>
+                  <div className="tl-who">
+                    {(r as { image?: string }).image && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={(r as { image?: string }).image} alt="" loading="lazy" />
+                    )}
+                    <div>
+                      <h4>{r.title}</h4>
+                      <div className="org">{r.org}</div>
+                    </div>
                   </div>
                   <span className="go">View →</span>
                 </li>
@@ -688,6 +726,34 @@ export default function Site({ page = "home" }: { page?: Page }) {
 
         {page === "story" && (
           <>
+        {/* ---------- OFF THE CLOCK: hobbies ---------- */}
+        {c.hobbies?.items?.length > 0 && (
+        <section id="hobbies" className="band dark hobbies" data-nav="dark">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="lbl-mono">04 · Hobbies</span>
+              <Heading text={c.hobbies.title} em={c.hobbies.em} />
+              <p className="lit-text">
+                <Words text={c.hobbies.text} />
+              </p>
+            </div>
+            <div className="hob-grid">
+              {c.hobbies.items.map((h, i) => (
+                <article className="hob tilt" key={h.title} style={{ ["--d" as string]: `${i * 0.08}s` }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={h.image} alt={`${p.short} — ${h.title.toLowerCase()}`} loading="lazy" />
+                  <span className="hob-tag">{h.tag}</span>
+                  <div className="hob-cap">
+                    <h3>{h.title}</h3>
+                    <p>{h.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        )}
+
         {/* ---------- EDUCATION (light) ---------- */}
         <section id="education" className="band light" data-nav="light">
           <div className="wrap">
@@ -849,9 +915,13 @@ export default function Site({ page = "home" }: { page?: Page }) {
           <div className="wrap">
             <div className="contact-grid">
               <div>
-                <span className="lbl-mono" style={{ opacity: 0.85 }}>
-                  05 · Contact
-                </span>
+                <div className="contact-me">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.expressions?.[0]?.image || p.photo} alt={p.name} loading="lazy" />
+                  <span className="lbl-mono" style={{ opacity: 0.85 }}>
+                    05 · Contact
+                  </span>
+                </div>
                 <h2 style={{ marginTop: 16 }}>
                   <Letters text={c.contact.title} />
                 </h2>

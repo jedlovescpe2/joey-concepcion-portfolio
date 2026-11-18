@@ -209,7 +209,8 @@
       "Use case",
       "Sequence",
       "Context"
-    ]
+    ],
+    "image": "/img/hat-mentor.webp"
   },
   "ladder": {
     "org": "Boehringer Ingelheim",
@@ -668,6 +669,37 @@
       "text": "Exploring cities and cultures to understand markets and people better."
     }
   ],
+  "hobbies": {
+    "title": "Off the",
+    "em": "clock.",
+    "text": "Weeknights and weekends belong to a racket, a paddle, a table of tiles and a good novel.",
+    "items": [
+      {
+        "title": "Badminton",
+        "tag": "Indoor court",
+        "text": "Fast rallies after work. Footwork first, smash second.",
+        "image": "/img/hobby-badminton.webp"
+      },
+      {
+        "title": "Pickleball",
+        "tag": "Weekend mornings",
+        "text": "The newest habit: easy to start, impossible to stop.",
+        "image": "/img/hobby-pickleball.webp"
+      },
+      {
+        "title": "Mahjong",
+        "tag": "Family table",
+        "text": "Patience, pattern-reading and a little luck. Very good training for production support.",
+        "image": "/img/hobby-mahjong.webp"
+      },
+      {
+        "title": "Reading novels",
+        "tag": "Rainy days",
+        "text": "A stack of fiction by the window and a coffee going cold.",
+        "image": "/img/hobby-reading.webp"
+      }
+    ]
+  },
   "thenNow": {
     "then": {
       "when": "Then · 2006",
@@ -795,5 +827,24 @@
     "text": "Turnaround, expressions, palette and the one gadget that is always on his wrist. A model sheet the way animators draw one, for a man who models systems before building them.",
     "image": "/img/sheet.webp",
     "turnaround": "/img/turnaround.webp"
+  },
+  "film": {
+    "label": "On the job · off the clock",
+    "images": [
+      "/img/hat-lead.webp",
+      "/img/hobby-badminton.webp",
+      "/img/hat-data.webp",
+      "/img/x-laughing.webp",
+      "/img/hat-mentor.webp",
+      "/img/hobby-mahjong.webp",
+      "/img/hat-support.webp",
+      "/img/hobby-reading.webp",
+      "/img/hat-analyst.webp",
+      "/img/x-thinking.webp",
+      "/img/hobby-pickleball.webp",
+      "/img/hat-frontend.webp",
+      "/img/hat-programmer.webp",
+      "/img/x-happy.webp"
+    ]
   }
 }

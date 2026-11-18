@@ -27,6 +27,8 @@ const SECTIONS: { key: keyof Content; label: string; hint: string }[] = [
   { key: "certifications", label: "Certifications", hint: "Grouped certificate cards." },
   { key: "education", label: "Education", hint: "Degrees." },
   { key: "interests", label: "Interests", hint: "Icon: spark, pulse or compass." },
+  { key: "hobbies", label: "Hobbies", hint: "Story page photo cards: title, small tag, one line, image." },
+  { key: "film", label: "Photo strip", hint: "Home page moving strip above Contact: list of image paths." },
   { key: "thenNow", label: "Then → now", hint: "" },
   { key: "faq", label: "Q & A", hint: "" },
   { key: "countries", label: "Countries", hint: "Production-support reach by region." },

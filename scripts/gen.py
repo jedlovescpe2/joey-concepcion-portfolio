@@ -70,6 +70,18 @@ JOBS = {
         "a tailored navy suit with a white open-collar shirt, no tie", HAT_FRAME)),
     "hat-mentor": dict(TALL, prompt=portrait("a university classroom with students softly blurred in the background and a screen with code behind him, warm encouraging smile, gesturing gently with one hand",
         "a light heather-grey knit zip cardigan over a dark plum shirt with a small subtle floral print", HAT_FRAME)),
+    "hobby-badminton": dict(TALL, prompt=portrait(
+        "an indoor badminton hall with a wooden floor, green court mats and a net behind him, bright even gym light; he holds a badminton racket up near his shoulder with a white feather shuttlecock in the other hand, energetic happy smile",
+        "a white athletic performance polo, black sports shorts, white court shoes, a black sweatband on the wrist", HAT_FRAME)),
+    "hobby-pickleball": dict(TALL, prompt=portrait(
+        "an outdoor blue pickleball court on a sunny morning with palm trees softly blurred; he holds a pickleball paddle and a yellow perforated pickleball, relaxed confident smile",
+        "a navy moisture-wicking t-shirt, a white sports cap worn forward, grey athletic shorts", HAT_FRAME)),
+    "hobby-mahjong": dict(TALL, prompt=portrait(
+        "a warm, cosy evening at a green-felt mahjong table with neat walls of ivory mahjong tiles in front of him, warm pendant light; only the blurred hands of friends at the very edges of the frame, no other faces; he lifts one tile and grins playfully",
+        "a relaxed cream linen button-down shirt with the sleeves rolled up", HAT_FRAME)),
+    "hobby-reading": dict(TALL, prompt=portrait(
+        "a calm reading nook by a rainy window with warm lamp light, a stack of novels on the side table and a mug of coffee; he sits in a leather armchair holding an open paperback novel and looks up from it with a gentle smile",
+        "a soft olive-green knit crew-neck sweater over a white t-shirt", HAT_FRAME)),
     "sheet": dict(size="1536x1024", background="opaque", prompt=(
         "A professional character model sheet of " + IDENTITY + ". " + LIKENESS + BUILD + STYLE + OUTFIT +
         "Layout on a clean warm cream paper background (#f6f3e7) with thin olive-green (#4c5a2b) guide lines and small olive labels: "
